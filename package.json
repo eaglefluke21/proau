@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "dev": "npx tailwindcss -i ./src/input.css -o ./auction/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "-": "^0.0.1",
+    "g": "^2.0.1",
+    "vercel": "^33.5.1"
+  }
+}
