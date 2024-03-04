@@ -43,18 +43,7 @@ function additem() {
 
 };
 
- // fetching the newly added item data 
- fetch(`${backendBaseUrl}/admin/getlatestitem`)
- .then(response => response.json())
- .then(data => {
-     console.log('Received item data:', data);
-     // Assuming you have elements with IDs in item.html to display the item data
-     document.getElementById('itemName').innerText = data.itemName;
-     document.getElementById('itemDescription').innerText = data.itemDescription;
-     document.getElementById('itemImage').src = `${backendBaseUrl}/${data.itemImage}`;
-     
- })
- .catch(error => console.error('Error fetching latest item:', error));
+
 
 
 
