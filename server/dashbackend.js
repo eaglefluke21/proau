@@ -10,7 +10,7 @@ const PORT  = process.env.PORT || 3300;
 // MongoDb collection
 mongoose.connect(
   'mongodb+srv://eaglefluke2106:passwordcluster@clusterone.jz6woqs.mongodb.net/?retryWrites=true&w=majority&appName=clusterone'
-  ).then(() => {
+).then(() => {
   console.log('Connected to MongoDB');
 }).catch(err => {
   console.error('Error connecting to MongoDB', err);
