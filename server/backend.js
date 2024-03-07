@@ -4,19 +4,18 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 const app = express();
-const PORT  = process.env.PORT || 3000;
+const PORT  = process.env.PORT || 3300;
+const USER = process.env.MONGO_USER;
+const PASSWORD = process.env.MONGO_PASSWORD;
 
-
-// Mongo DB Connection
-
+// MongoDb collection
 mongoose.connect(
-    'mongodb+srv://eaglefluke2106:passwordcluster@clusterone.jz6woqs.mongodb.net/?retryWrites=true&w=majority&appName=clusterone'
-    ).then(() => {
-    console.log('Connected to MongoDB');
-  }).catch(err => {
-    console.error('Error connecting to MongoDB', err);
-  });
-
+  `mongodb+srv://${USER}:${PASSWORD}@clusterone.jz6woqs.mongodb.net/?retryWrites=true&w=majority&appName=clusterone`
+).then(() => {
+  console.log('Connected to MongoDB');
+}).catch(err => {
+  console.error('Error connecting to MongoDB', err);
+});
   // defining user schema/database
 
   const userSchema = new mongoose.Schema({

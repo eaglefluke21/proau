@@ -1,26 +1,34 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const backendBaseUrl ='http://localhost:3300'; // Replace 'your_backend_base_url' with your actual backend base URL
+  const backendBaseUrl ='http://localhost:3000'; // Replace 'http://localhost:3300' with your actual backend base URL
 
-  // Fetching the newly added item data
-  fetch(`${backendBaseUrl}/admin/getlatestitem`)
+  // Fetching the item data
+  fetch(`${backendBaseUrl}/admin/listimages`)
   .then(response => response.json())
   .then(data => {
       console.log('Received item data:', data);
 
-      // Construct the image URL
-      const imageUrl = `${backendBaseUrl}/${data.itemImage.replace(/\\/g, '/')}`;
-      console.log('Image URL:', imageUrl);
+      // Get the container element where images will be displayed
+      const container = document.getElementById('itemContainer');
 
-      // Set the item name and description
-      document.getElementById('itemName').innerText = data.itemName;
-      document.getElementById('itemDescription').innerText = data.itemDescription;
+      // Loop through the images data
+      data.images.forEach(image => {
+          // Create a div to hold each image details
+          const div = document.createElement('div');
+          div.classList.add('item'); // Add a CSS class for styling if needed
 
-      // Set the image source
-      document.getElementById('itemImage').src = imageUrl;
+          // Set the inner HTML of the div with image details
+          div.innerHTML = `
+              <h2>Name: ${image.name}</h2>
+              <p>Description: ${image.description}</p>
+              <img src="${image.downloadURL}" alt="${image.name}">
+          `;
+
+          // Append the div to the container
+          container.appendChild(div);
+      });
   })
-  .catch(error => console.error('Error fetching latest item:', error));
+  .catch(error => console.error('Error fetching item data:', error));
 });
-
 
 
 

@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // Assuming backend is hosted locally on port 3000
-const backendBaseUrl = 'http://localhost:3300';
+const backendBaseUrl = 'http://localhost:3000';
 
 function additem() {
     const itemName = document.getElementById("itemName").value;
