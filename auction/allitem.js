@@ -1,35 +1,34 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const backendBaseUrl ='http://localhost:3000'; // Replace 'http://localhost:3300' with your actual backend base URL
+  const backendBaseUrl = 'http://localhost:3000';
 
   // Fetching the item data
   fetch(`${backendBaseUrl}/admin/listimages`)
-  .then(response => response.json())
-  .then(data => {
+    .then(response => response.json())
+    .then(data => {
       console.log('Received item data:', data);
 
       // Get the container element where images will be displayed
       const container = document.getElementById('itemContainer');
 
       // Loop through the images data
-      data.images.forEach(image => {
-          // Create a div to hold each image details
-          const div = document.createElement('div');
-          div.classList.add('item'); // Add a CSS class for styling if needed
+      data.items.forEach(item => {
+        // Create a div to hold each item details
+        const div = document.createElement('div');
+        div.classList.add('item'); 
 
-          // Set the inner HTML of the div with image details
-          div.innerHTML = `
-              <h2>Name: ${image.name}</h2>
-              <p>Description: ${image.description}</p>
-              <img src="${image.downloadURL}" alt="${image.name}">
-          `;
+        // Set the inner HTML of the div with item details
+        div.innerHTML = `
+          <h2>Name: ${item.itemName}</h2>
+          <p>Description: ${item.itemDescription}</p>
+          <img src="${item.itemImageURL}" alt="${item.itemName}">
+        `;
 
-          // Append the div to the container
-          container.appendChild(div);
+        // Append the div to the container
+        container.appendChild(div);
       });
-  })
-  .catch(error => console.error('Error fetching item data:', error));
+    })
+    .catch(error => console.error('Error fetching item data:', error));
 });
-
 
 
 

@@ -8,11 +8,7 @@ import serviceAccount from '../key/serviceAccountKey.js';
 import { getStorage, ref, listAll } from "firebase/storage";
 import { initializeApp } from "firebase/app";
 import { getDownloadURL } from "firebase/storage";
-
-
-
-
-
+import { getMetadata } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC5_CJzmr0Q0uydCXE-2-t_2Dt1U-nEwU0",
@@ -33,7 +29,7 @@ const PORT  = process.env.PORT || 3300;
 const USER = process.env.MONGO_USER;
 const PASSWORD = process.env.MONGO_PASSWORD;
 
-console.log('service acount:', serviceAccount);
+console.log('service account:', serviceAccount);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -43,7 +39,8 @@ admin.initializeApp({
 
 const bucket = admin.storage().bucket();
 const firebasestorage = getStorage();
-
+// accessing images stored in firebase storage 
+const rootRef = ref(firebasestorage);
 
 // MongoDb collection
 mongoose.connect(
@@ -76,81 +73,71 @@ const itemSchema = new mongoose.Schema (
 // create model from schema   
 const Item = mongoose.model('Item', itemSchema);
 
-  
-  // Handle POST request for adding item
-  app.post('/admin/additem', upload.single('itemImage'), async (req, res) => {
-    try {
-    const itemName = req.body.itemName;
-    const itemDescription = req.body.itemDescription;
+// Handle POST request for adding item
+app.post('/admin/additem', upload.single('itemImage'), (req, res) => {
+  const itemName = req.body.itemName;
+  const itemDescription = req.body.itemDescription;
 
-    // upload file to firebase storage
-    const file = req.file;
-    const fileName =file.originalname;
-    const fileUpload = bucket.file(fileName);
+  // Upload file to Firebase Storage
+  const file = req.file;
+  const fileName = file.originalname;
+  const fileUpload = bucket.file(fileName);
 
-    await fileUpload.save(file.buffer, {
-      metadata:{
-        contentType: file.mimetype
-      }
-    });
-    
-    const itemImageURL = `https://storage.googleapis.com/${bucket.name}/${fileName}`;
-  
+  fileUpload.save(file.buffer, {
+    metadata: {
+      contentType: file.mimetype
+    }
+  })
+  .then(() => {
+    // Retrieve download URL of the uploaded file
+    return listAll(rootRef);
+  })
+  .then(result => {
+    if (result.items.length === 0) {
+      throw new Error("No items found in storage.");
+    }
+    const latestItem = result.items[0]; // Get the latest uploaded item
+    console.log('Latest item:', latestItem);
+
+    return getDownloadURL(latestItem);
+  })
+  .then(itemImageURL => {
+    console.log('URL:', itemImageURL);
+
     // Create a new item document
-     
     const newItem = new Item({
       itemName,
       itemImageURL,
       itemDescription
     });
 
-    // saving the item to the database
-
-    await newItem.save()
-      
-        res.status(200).json({ message: "Item added successfully" });
-  }
-      catch(error)  {
-        console.error('Error saving item:', error);
-        res.status(500).json({error: "Failed to add item"});
-
-      }
-  
-    });
-    
-    import { getMetadata } from "firebase/storage";
-
-app.get('/admin/listimages', async (req, res) => {
-  try {
-    const rootRef = ref(firebasestorage);
-
-    listAll(rootRef)
-      .then(async (result) => {
-        const imagesData = [];
-
-        for (const item of result.items) {
-          const metadata = await getMetadata(item);
-          imagesData.push({
-            name: metadata.name,
-            fullPath: metadata.fullPath,
-            contentType: metadata.contentType,
-            size: metadata.size,
-            downloadURL: await getDownloadURL(item)
-          });
-        }
-
-        res.status(200).json({ images: imagesData });
-      })
-      .catch((error) => {
-        console.error('Error listing images:', error);
-        res.status(500).json({ error: "Failed to list images" });
-      });
-  } catch (err) {
-    console.error('Error listing images:', err);
-    res.status(500).json({ error: "Failed to list images" });
-  }
+    // Save the new item document to the database
+    return newItem.save();
+  })
+  .then(() => {
+    res.status(200).json({ message: "Item added successfully" });
+  })
+  .catch(error => {
+    console.error('Error saving item:', error);
+    res.status(500).json({ error: "Failed to add item" });
+  });
 });
 
+
+  
+// Handle GET request for listing images
+app.get('/admin/listimages', async (req, res) => {
+  try {
+    // Fetch items from the database
+    const items = await Item.find({}).select('itemName itemDescription itemImageURL');
+
+
+    res.status(200).json({ items });
+  } catch (error) {
+    console.error('Error fetching items:', error);
+    res.status(500).json({ error: "Failed to fetch items" });
+  }
+});
     
   
 
