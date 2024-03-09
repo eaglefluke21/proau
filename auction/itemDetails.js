@@ -21,10 +21,34 @@ fetch(`${backendBaseUrl}/admin/getItemDetails?itemId=${itemId}`)
     document.getElementById('itemDescription').innerText = data.itemDescription;
     document.getElementById('itemImageURL').src = data.itemImageURL;
 
+    // Add event listener for delete button
+    const deleteButton = document.getElementById('deleteButton');
+    deleteButton.addEventListener('click', function() {
+            deleteItem(itemId);
+    });
+
 
 })
 .catch(error => console.error('Error fetching item details:', error ));
 
+function deleteItem(itemId){
+    console.log("checking item id:", itemId );
+    fetch(`${backendBaseUrl}/admin/deleteItem`,{
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Handle success
+        console.log(data.message); // Log success message
+        // Redirect or display success message to the user
+    })
+    .catch(error => console.error('Error deleting item:', error));
+}
 
 });
 

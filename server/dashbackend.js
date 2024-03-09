@@ -164,6 +164,28 @@ app.get('/admin/listimages', async (req, res) => {
     }
   });
 
+  // Handle Delete request for deleting an item by id
+app.delete('/admin/deleteItem', async (req, res) => {
+  try {
+      // Fetch itemId from request body
+      const itemId = req.body.itemId;
+
+      // Delete item from the database based on itemId
+      const result = await Item.deleteOne({ _id: itemId });
+
+      if (result.deletedCount === 0) {
+          return res.status(404).json({ error: "Item not found" });
+      }
+
+      res.status(200).json({ message: "Item deleted successfully" });
+  } catch(error) {
+      console.error('Error deleting item:', error);
+      res.status(500).json({ error: "Failed to delete item" });
+  }
+});
+
+
+
 
 
 
