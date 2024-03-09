@@ -139,7 +139,30 @@ app.get('/admin/listimages', async (req, res) => {
   }
 });
     
-  
+  // Handle Get requests for getting images detail by id
+
+  app.get('/admin/getItemDetails', async(req, res) => {
+    try {
+      // Fetching itemId from query parameters
+      const itemId = req.query.itemId;
+
+      console.log("check id:", itemId);
+
+      // Fetching item details from database based on itemId
+      const item = await Item.findById(itemId).select('itemName itemDescription itemImageURL');
+
+      if (!item) {
+        return res.status(404).json({ error: "Item not found"});
+
+      }
+
+      res.status(200).json(item);
+
+    } catch(error){
+      console.error('Error fetching item Details:', error);
+      res.status(500).json({error:"Failed to fetch item details"});
+    }
+  });
 
 
 

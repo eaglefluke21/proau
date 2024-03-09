@@ -95,28 +95,50 @@
     <!--- Heading-->
 
     <div class="flex justify-center">
-      <p class="font-bold font-anta text-xl w-10/12 md:w-max md:text-3xl">
-        welcome to Auction Bid
+      <p class="font-bold font-anta text-xl w-10/12 md:w-max md:text-3xl" id="itemName">
+        
       </p>
     </div>
 
+    <div class="flex font-anta justify-center mt-2 mb-2">
+      <p id="itemDescription"></p>
+    </div>
+
+
+
+    <!--- image-->
+
+    <div class="flex justify-center p-8">
+      <img
+      class="w-60 h-50 rounded-lg" id="itemImageURL"
+        src=""
+        
+      />
+    </div>
+
+
+    <!---orders -->
+
+    <div class="flex justify-center p-4">
+      <div class="flex flex-col font-anta  text-sm md:text-2xl">
+        <ul>
+          <li
+            class="bg-sky-500 rounded-lg mb-4 px-6 py-2 hover:bg-sky-300 md:px-12"
+          >
+            Place New Bid 
+          </li>
+
+          <li
+            class="bg-rose-500 rounded-lg px-6 py-2 hover:bg-rose-300 md:px-12"
+          >
+            Past Bid 
+          </li>
+        </ul>
+      </div>
+    </div>
+
     
-
-   
-
-
- 
-
-    <script>
-      document.getElementById("toggle").addEventListener("click", function () {
-        const nav = document.getElementById("nav");
-        nav.classList.toggle("-translate-x-full");
-      });
-
-      document.getElementById("Items").addEventListener("click", function () {
-        const nav = document.getElementById("dropdown");
-        nav.classList.toggle("hidden");
-      });
-    </script>
   </body>
+
+  <script   src="./itemDetails.js">  </script>
 </html>

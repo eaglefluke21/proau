@@ -12,6 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Loop through the images data
       data.items.forEach(item => {
+
+        console.log('Item:', item);
+
+        const itemId = item._id;
+         
+        console.log("check id :" ,itemId);
+
         // Create a div to hold each item details
         const div = document.createElement('div');
         div.classList.add('item'); 
@@ -22,6 +29,16 @@ document.addEventListener('DOMContentLoaded', function() {
           <p>Description: ${item.itemDescription}</p>
           <img src="${item.itemImageURL}" alt="${item.itemName}">
         `;
+
+
+        // Add event listener to the div
+
+        div.addEventListener('click', () => {
+          // redirecting to new page with item details
+          window.location.href=`itemDetails.html?itemId=${itemId}`;
+        })
+
+        
 
         // Append the div to the container
         container.appendChild(div);
