@@ -33,8 +33,13 @@ fetch(`${backendBaseUrl}/admin/getItemDetails?itemId=${itemId}`)
 
 function deleteItem(itemId){
     console.log("checking item id:", itemId );
+    console.log("checking image URL:", itemImageURL.src );
     fetch(`${backendBaseUrl}/admin/deleteItem`,{
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({itemId: itemId , itemImageURL: itemImageURL.src})
     })
     .then(response => {
         if (!response.ok) {

@@ -8,7 +8,7 @@ import serviceAccount from '../key/serviceAccountKey.js';
 import { getStorage, ref, listAll } from "firebase/storage";
 import { initializeApp } from "firebase/app";
 import { getDownloadURL } from "firebase/storage";
-import { getMetadata } from "firebase/storage";
+import { deleteObject } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC5_CJzmr0Q0uydCXE-2-t_2Dt1U-nEwU0",
@@ -60,6 +60,7 @@ app.use(cors());
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
+
   //Define schema for item data
 const itemSchema = new mongoose.Schema (
   {
@@ -72,6 +73,8 @@ const itemSchema = new mongoose.Schema (
 
 // create model from schema   
 const Item = mongoose.model('Item', itemSchema);
+
+
 
 // Handle POST request for adding item
 app.post('/admin/additem', upload.single('itemImage'), (req, res) => {
@@ -164,25 +167,43 @@ app.get('/admin/listimages', async (req, res) => {
     }
   });
 
-  // Handle Delete request for deleting an item by id
+// Handle Delete request for deleting an item by id
 app.delete('/admin/deleteItem', async (req, res) => {
   try {
-      // Fetch itemId from request body
-      const itemId = req.body.itemId;
+    // Fetch itemId from request body
+    const itemId = req.body.itemId;
 
-      // Delete item from the database based on itemId
-      const result = await Item.deleteOne({ _id: itemId });
+    const itemImageURL = req.body.itemImageURL;
+    
 
-      if (result.deletedCount === 0) {
-          return res.status(404).json({ error: "Item not found" });
-      }
+    
+      console.log("mainurl:", itemImageURL);
 
-      res.status(200).json({ message: "Item deleted successfully" });
+      // Extract the image name from the URL
+      const imageName = itemImageURL.substring(itemImageURL.lastIndexOf('/') + 1).split('?')[0];
+      console.log("name:", imageName);
+
+      // Create a reference to the file to delete
+      const imageRef = ref(firebasestorage, imageName);
+
+      // Delete the file from Firebase Storage
+      await deleteObject(imageRef);
+   
+
+    // Delete item from the database based on itemId
+    const result = await Item.deleteOne({ _id: itemId });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ error: "item does not exist" });
+    }
+
+    res.status(200).json({ message: "Item and associated image deleted successfully" });
   } catch(error) {
-      console.error('Error deleting item:', error);
-      res.status(500).json({ error: "Failed to delete item" });
+    console.error('Error deleting item and associated image:', error);
+    res.status(500).json({ error: "Failed to delete item and associated image" });
   }
 });
+
 
 
 
