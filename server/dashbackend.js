@@ -5,7 +5,7 @@ import multer from 'multer';
 import mongoose from 'mongoose';
 import admin from 'firebase-admin';
 import serviceAccount from '../key/serviceAccountKey.js';
-import { getStorage, ref, listAll } from "firebase/storage";
+import { getStorage, ref, listAll , getMetadata} from "firebase/storage";
 import { initializeApp } from "firebase/app";
 import { getDownloadURL } from "firebase/storage";
 import { deleteObject } from "firebase/storage";
@@ -25,7 +25,6 @@ const firebaseapp = initializeApp(firebaseConfig);
 
 
 const app = express();
-const PORT  = process.env.PORT || 3300;
 const USER = process.env.MONGO_USER;
 const PASSWORD = process.env.MONGO_PASSWORD;
 
@@ -39,7 +38,6 @@ admin.initializeApp({
 
 const bucket = admin.storage().bucket();
 const firebasestorage = getStorage();
-// accessing images stored in firebase storage 
 const rootRef = ref(firebasestorage);
 
 // MongoDb collection
@@ -88,21 +86,50 @@ app.post('/admin/additem', upload.single('itemImage'), (req, res) => {
 
   fileUpload.save(file.buffer, {
     metadata: {
-      contentType: file.mimetype
+      contentType: file.mimetype,
+      // Add a custom metadata field to store the upload time
+      uploadTime: new Date().toISOString() // Store current time as ISO string
     }
   })
   .then(() => {
-    // Retrieve download URL of the uploaded file
+    // Retrieve all files from Firebase Storage
     return listAll(rootRef);
   })
   .then(result => {
     if (result.items.length === 0) {
       throw new Error("No items found in storage.");
     }
-    const latestItem = result.items[0]; // Get the latest uploaded item
-    console.log('Latest item:', latestItem);
+    
+  // Fetch metadata for each item and sort them by creation time
+  const metadataPromises = result.items.map(item => {
+    const itemRef = ref(firebasestorage, item.fullPath);
+    return getMetadata(itemRef);
+  });
 
-    return getDownloadURL(latestItem);
+  return Promise.all(metadataPromises)
+    .then(metadataList => {
+      // Sort items by creation time
+      console.log("list of metadata:", metadataList);
+
+            // Combine metadata with items
+      const itemsWithMetadata = result.items.map((item, index) => ({
+        item,
+        metadata: metadataList[index]
+      }));
+
+      itemsWithMetadata.sort((a, b) => {
+        const timeCreatedA = Date.parse(a.metadata.timeCreated || a.metadata.updated || 0);
+        const timeCreatedB = Date.parse(b.metadata.timeCreated || b.metadata.updated || 0);
+        return timeCreatedB - timeCreatedA; // Sort in descending order
+      });
+
+      // Get download URL for the latest item
+      const latestItem = itemsWithMetadata[0].item;
+      const latestItemRef = ref(firebasestorage, latestItem.fullPath);
+      return getDownloadURL(latestItemRef);
+    }); 
+
+
   })
   .then(itemImageURL => {
     console.log('URL:', itemImageURL);
@@ -206,11 +233,4 @@ app.delete('/admin/deleteItem', async (req, res) => {
 
 
 
-
-
-
-
-  
-  app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-  });
+  export default app;

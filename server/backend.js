@@ -4,7 +4,6 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 const app = express();
-const PORT  = process.env.PORT || 3300;
 const USER = process.env.MONGO_USER;
 const PASSWORD = process.env.MONGO_PASSWORD;
 
@@ -60,13 +59,6 @@ mongoose.connect(
   });
 
 
-
-
-  // Starting the server
-
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-    console.log(`You can access the server at http://localhost:${PORT}`);
-
-  });
   
+
+  export default app;
