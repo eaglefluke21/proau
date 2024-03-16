@@ -586,12 +586,20 @@ video {
   position: relative;
 }
 
+.inset-0 {
+  inset: 0px;
+}
+
 .left-0 {
   left: 0px;
 }
 
 .left-10 {
   left: 2.5rem;
+}
+
+.left-3 {
+  left: 0.75rem;
 }
 
 .top-0 {
@@ -602,8 +610,20 @@ video {
   top: 5rem;
 }
 
+.top-40 {
+  top: 10rem;
+}
+
 .z-10 {
   z-index: 10;
+}
+
+.z-20 {
+  z-index: 20;
+}
+
+.z-30 {
+  z-index: 30;
 }
 
 .m-2 {
@@ -651,8 +671,16 @@ video {
   height: 5rem;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
 .h-dvh {
   height: 100dvh;
+}
+
+.h-screen {
+  height: 100vh;
 }
 
 .w-10 {
@@ -661,6 +689,10 @@ video {
 
 .w-10\/12 {
   width: 83.333333%;
+}
+
+.w-14 {
+  width: 3.5rem;
 }
 
 .w-36 {
@@ -723,6 +755,10 @@ video {
 
 .gap-6 {
   gap: 1.5rem;
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
 
 .rounded {
@@ -806,6 +842,18 @@ video {
   background-color: rgb(234 179 8 / var(--tw-bg-opacity));
 }
 
+.bg-two-tone {
+  background-image: linear-gradient(-60deg, rgba(229,231,235,0) 50%,  rgb(216 ,180, 254 ,1) 50%);
+}
+
+.bg-cover {
+  background-size: cover;
+}
+
+.bg-no-repeat {
+  background-repeat: no-repeat;
+}
+
 .p-2 {
   padding: 0.5rem;
 }
@@ -856,6 +904,11 @@ video {
   line-height: 2rem;
 }
 
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -878,6 +931,11 @@ video {
 
 .font-bold {
   font-weight: 700;
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .shadow-lg {
@@ -923,6 +981,16 @@ video {
   background-color: rgb(134 239 172 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-purple-300:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(216 180 254 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-purple-400:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(192 132 252 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-rose-300:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(253 164 175 / var(--tw-bg-opacity));
@@ -934,6 +1002,10 @@ video {
 }
 
 @media (min-width: 768px) {
+  .md\:left-36 {
+    left: 9rem;
+  }
+
   .md\:w-52 {
     width: 13rem;
   }
@@ -953,6 +1025,14 @@ video {
 
   .md\:gap-4 {
     gap: 1rem;
+  }
+
+  .md\:bg-contain {
+    background-size: contain;
+  }
+
+  .md\:bg-right {
+    background-position: right;
   }
 
   .md\:p-4 {
@@ -982,6 +1062,11 @@ video {
   .md\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
+  }
+
+  .md\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
   }
 
   .md\:text-lg {

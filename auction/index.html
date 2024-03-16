@@ -23,13 +23,16 @@
 
 
   </head>
-  <body class="bg-gray-100">
+  <body class=" h-screen  bg-cover   bg-no-repeat overflow-hidden " id="backgroundImages" style="background-image: url(svg/back.jpg);">
+
+
+    <div class="  absolute   inset-0  bg-two-tone "></div>
     <!--- toggle -->
 
-    <div class="relative top-0 left-0 z-10">
+    <div class="absolute top-0 left-10 z-30">
       <img
         src="svg/auction.svg "
-        class="h-20 w-10 relative left-10"
+        class="h-24 w-14 "
         id="toggle"
       />
     </div>
@@ -37,40 +40,42 @@
     <!--- navigation bar -->
 
     <nav
-      class="absolute top-0 left-0 h-dvh w-36 bg-blue-300 font-anta font-bold rounded-r-lg transition ease-in-out delay-500 transform -translate-x-full md:w-52"
+      class="absolute top-0 left-0 z-20 h-dvh w-36 bg-white font-anta font-bold rounded-r-lg transition ease-in-out delay-500 transform -translate-x-full md:w-52"
       id="nav"
     >
       <ul>
         <a href="index.html">
           <li class="relative top-20">
             <span
-              class="flex items-center text-lg rounded-lg hover:bg-blue-400"
+              class="flex items-center text-lg rounded-lg hover:bg-purple-400"
             >
               <img src="svg/home.svg" class="h-11 w-7 m-2" alt="" /> Home
             </span>
           </li>
         </a>
 
+        
         <li class="relative top-20">
           <span
-            class="flex items-center text-lg rounded-lg hover:bg-blue-400"
+            class="flex items-center text-lg rounded-lg hover:bg-purple-400"
             id="Items"
           >
             <img src="svg/bag.svg" class="h-12 w-8 m-2" alt="" /> Items
           </span>
           <ul class="text-lg hidden md:text-xl" id="dropdown">
             <a href="allitem.html">
-              <li class="hover:bg-blue-200 rounded-lg ml-4 mb-2">All Items</li>
+              <li class="hover:bg-purple-300 rounded-lg ml-4 mb-2">All Items</li>
             </a>
 
-            <li class="hover:bg-blue-200 rounded-lg ml-4">Your Items</li>
+            <li class="hover:bg-purple-300 rounded-lg ml-4">Your Items</li>
           </ul>
         </li>
+      
 
         <a href="account.html">
           <li class="relative top-20">
             <span
-              class="flex items-center text-lg rounded-lg hover:bg-blue-400"
+              class="flex items-center text-lg rounded-lg hover:bg-purple-400"
             >
               <img src="svg/account.svg" class="h-12 w-8 m-2" alt="" /> Account
             </span>
@@ -80,7 +85,7 @@
         <a href="admin.html">
         <li class="relative top-20">
           <span
-            class="flex items-center text-lg rounded-lg hover:bg-blue-400"
+            class="flex items-center text-lg rounded-lg hover:bg-purple-400"
           >
             <img src="svg/dashboard.svg" class="h-12 w-8 m-2" alt="" /> Admin
           </span>
@@ -94,16 +99,11 @@
 
     <!--- Heading-->
 
-    <div class="flex justify-center">
-      <p class="font-bold font-anta text-xl w-10/12 md:w-max md:text-3xl">
-        welcome to Auction Bid
+    <div class=" relative  z-10 top-40 left-3 md:left-36 ">
+      <p class="  font-bold font-anta text-white  text-3xl md:text-6xl   ">
+        Auction Nest
       </p>
     </div>
-
-    
-
-   
-
 
  
 
@@ -117,6 +117,25 @@
         const nav = document.getElementById("dropdown");
         nav.classList.toggle("hidden");
       });
+
+      const images = [
+        'svg/back.jpg',
+        'svg/backa.jpg',
+        'svg/backb.jpg',
+        'svg/backc.jpg',
+        'svg/backd,jpg'
+
+
+      ];
+
+      function changeBackgroundImages() {
+        const currentIndex = Math.floor(Math.random() * images.length);
+        const imageUrl = images[currentIndex];
+        document.body.style.backgroundImage = `url(${imageUrl})`
+      }
+
+      setInterval(changeBackgroundImages, 6000);
+
     </script>
   </body>
 </html>
