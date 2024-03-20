@@ -99,40 +99,13 @@
 
     <!--- Heading-->
 
-    <div class=" relative  z-10 top-40 left-3 md:left-36 ">
+    <div class=" relative  z-10 top-40 left-3  md:left-36 ">
       <p class="  font-bold font-anta text-white  text-3xl md:text-6xl   ">
         Auction Nest
       </p>
     </div>
 
- 
 
-    <script>
-      document.getElementById("toggle").addEventListener("click", function () {
-        const nav = document.getElementById("nav");
-        nav.classList.toggle("-translate-x-full");
-      });
-
-      document.getElementById("Items").addEventListener("click", function () {
-        const nav = document.getElementById("dropdown");
-        nav.classList.toggle("hidden");
-      });
-
-      const images = [
-        'svg/ywall.jpg',
-        
-
-
-      ];
-
-      function changeBackgroundImages() {
-        const currentIndex = Math.floor(Math.random() * images.length);
-        const imageUrl = images[currentIndex];
-        document.body.style.backgroundImage = `url(${imageUrl})`
-      }
-
-      setInterval(changeBackgroundImages, 2000);
-
-    </script>
   </body>
+  <script   src="./index.js">  </script>
 </html>
