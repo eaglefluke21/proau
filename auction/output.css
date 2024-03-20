@@ -850,6 +850,10 @@ video {
   background-size: cover;
 }
 
+.bg-contain {
+  background-size: contain;
+}
+
 .bg-no-repeat {
   background-repeat: no-repeat;
 }
@@ -1025,14 +1029,6 @@ video {
 
   .md\:gap-4 {
     gap: 1rem;
-  }
-
-  .md\:bg-contain {
-    background-size: contain;
-  }
-
-  .md\:bg-right {
-    background-position: right;
   }
 
   .md\:p-4 {

@@ -23,7 +23,7 @@
 
 
   </head>
-  <body class=" h-screen  bg-cover   bg-no-repeat overflow-hidden " id="backgroundImages" style="background-image: url(svg/back.jpg);">
+  <body class=" h-dvh  bg-contain  overflow-hidden " id="backgroundImages" style="background-image: url();">
 
 
     <div class="  absolute   inset-0  bg-two-tone "></div>
@@ -119,11 +119,8 @@
       });
 
       const images = [
-        'svg/back.jpg',
-        'svg/backa.jpg',
-        'svg/backb.jpg',
-        'svg/backc.jpg',
-        'svg/backd,jpg'
+        'svg/ywall.jpg',
+        
 
 
       ];
@@ -134,7 +131,7 @@
         document.body.style.backgroundImage = `url(${imageUrl})`
       }
 
-      setInterval(changeBackgroundImages, 6000);
+      setInterval(changeBackgroundImages, 2000);
 
     </script>
   </body>
