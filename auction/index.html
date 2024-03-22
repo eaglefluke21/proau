@@ -1,152 +1,148 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,500;1,500&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anta&display=swap"
-      rel="stylesheet"
-    />
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title></title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,500;1,500&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
 
 
-    <link href="output.css" rel="stylesheet" />
-    
-    <base href="/auction/">
+  <link href="output.css" rel="stylesheet" />
+
+  <base href="/auction/">
 
 
-  </head>
-  <body class=" bg-purple-300">
+</head>
+
+<body class=" bg-purple-300">
 
 
-    
-    <!--- toggle -->
 
-    <div class="absolute top-0 left-10 z-20">
-      <img
-        src="svg/auction.svg "
-        class="h-24 w-14 "
-        id="toggle"
-      />
-    </div>
+  <!--- toggle -->
 
-    <!--- navigation bar -->
+  <div class="absolute top-0 left-10 z-20">
+    <img src="svg/auction.svg " class="h-24 w-14 " id="toggle" />
+  </div>
 
-    <nav
-      class="absolute top-0 left-0 z-10 h-dvh w-36 bg-white font-anta font-bold rounded-r-lg transition ease-in-out delay-500 transform -translate-x-full md:w-52"
-      id="nav"
-    >
-      <ul>
-        <a href="index.html">
-          <li class="relative top-20">
-            <span
-              class="flex items-center text-lg rounded-lg hover:bg-purple-400"
-            >
-              <img src="svg/home.svg" class="h-11 w-7 m-2" alt="" /> Home
-            </span>
-          </li>
-        </a>
+  <!--- navigation bar -->
 
-        
+  <nav
+    class="absolute top-0 left-0 z-10 h-dvh w-36 bg-white font-anta font-bold rounded-r-lg transition ease-in-out delay-500 transform -translate-x-full md:w-52"
+    id="nav">
+    <ul>
+      <a href="index.html">
         <li class="relative top-20">
-          <span
-            class="flex items-center text-lg rounded-lg hover:bg-purple-400"
-            id="Items"
-          >
-            <img src="svg/bag.svg" class="h-12 w-8 m-2" alt="" /> Items
+          <span class="flex items-center text-lg rounded-lg hover:bg-purple-400">
+            <img src="svg/home.svg" class="h-11 w-7 m-2" alt="" /> Home
           </span>
-          <ul class="text-lg hidden md:text-xl" id="dropdown">
-            <a href="allitem.html">
-              <li class="hover:bg-purple-300 rounded-lg ml-4 mb-2">All Items</li>
-            </a>
-
-            <li class="hover:bg-purple-300 rounded-lg ml-4">Your Items</li>
-          </ul>
         </li>
-      
+      </a>
 
-        <a href="account.html">
-          <li class="relative top-20">
-            <span
-              class="flex items-center text-lg rounded-lg hover:bg-purple-400"
-            >
-              <img src="svg/account.svg" class="h-12 w-8 m-2" alt="" /> Account
-            </span>
-          </li>
-        </a>
-        
-        <a href="admin.html">
+
+      <li class="relative top-20">
+        <span class="flex items-center text-lg rounded-lg hover:bg-purple-400" id="Items">
+          <img src="svg/bag.svg" class="h-12 w-8 m-2" alt="" /> Items
+        </span>
+        <ul class="text-lg hidden md:text-xl" id="dropdown">
+          <a href="allitem.html">
+            <li class="hover:bg-purple-300 rounded-lg ml-4 mb-2">All Items</li>
+          </a>
+
+          <li class="hover:bg-purple-300 rounded-lg ml-4">Your Items</li>
+        </ul>
+      </li>
+
+
+      <a href="account.html">
         <li class="relative top-20">
-          <span
-            class="flex items-center text-lg rounded-lg hover:bg-purple-400"
-          >
+          <span class="flex items-center text-lg rounded-lg hover:bg-purple-400">
+            <img src="svg/account.svg" class="h-12 w-8 m-2" alt="" /> Account
+          </span>
+        </li>
+      </a>
+
+      <a href="admin.html">
+        <li class="relative top-20">
+          <span class="flex items-center text-lg rounded-lg hover:bg-purple-400">
             <img src="svg/dashboard.svg" class="h-12 w-8 m-2" alt="" /> Admin
           </span>
         </li>
-        </a>
+      </a>
 
-      </ul>
-    </nav>
+    </ul>
+  </nav>
 
-    <!--- Main content-->
+  <!--- Main content-->
 
-    <!--- Heading-->
+  <!--- Heading-->
 
-    <div class=" p-4 mt-24 text-center md:mt-6 ">
-      <p class="  font-bold font-anta text-white  text-3xl md:text-6xl   ">
-        Auction Nest
-      </p>
+  <div class=" p-8 mt-24 text-center bg-black ">
+    <p class="  font-bold font-anta text-white  text-3xl ">
+      Auction Nest
+    </p>
+  </div>
+
+  <!----- Carousel-->
+
+  <div id="carousel" class=" p-2  flex flex-col justify-center  gap-8  bg-amber-400 md:grid lg:grid-cols-12 lg:items-center  ">
+
+
+
+    <div class="w- bfull bg-red-300 items-center lg:ml-40  lg:col-span-5">
+      <p class="font-comic text-gray-800 text-md p-8 rounded-lg lg:text-2xl"> Introducing Auction Nest: your ultimate online auction destination,
+        where thrill seamlessly merges with convenience. At Auction Nest, we unite global buyers and sellers in a
+        vibrant marketplace. Whether you're on the hunt for unique collectibles, seeking out rare treasures, or looking
+        to showcase your own prized possessions, our platform offers the ideal space to connect enthusiasts and
+        collectors. Join us as we embark on a journey of exploration, where each bid holds the promise of uncovering
+        something truly extraordinary. Welcome to the forefront of auctioning, welcome to Auction Nest.</p>
     </div>
 
-<!----- Carousel-->
+    
 
-<div id="carousel"  class=" p-8 flex flex-col  bg-amber-400 rounded-lg ">
 
-  <button onclick="prevSlide()" class="">
-    <img src="svg/previous.svg" alt="Previous" class="h-12 w-20">
+    <div id="carousel-inner" class=" relative  cursor-pointer rounded-lg bg-green-400 w-full mx-auto lg:ml-48 lg:w-[26rem] lg:h-[30rem] lg:col-span-5">
+
+    
+     
+    </div>
+
+   <!-----Buttons-->
+<div >
+  <button onclick="prevSlide()">
+    <img src="svg/previous.svg" alt="Previous" class=" absolute top-[52rem]  lg:top-96 left-0 h-12 w-20">
   </button>
-
-  <div class="w-full bg-green-200 ">
-  <p class="font-comic text-gray-800 text-md text-center md:text-2xl md:text-left  "> Introducing Auction Nest: your ultimate online auction destination, where thrill seamlessly merges with convenience. At Auction Nest, we unite global buyers and sellers in a vibrant marketplace. Whether you're on the hunt for unique collectibles, seeking out rare treasures, or looking to showcase your own prized possessions, our platform offers the ideal space to connect enthusiasts and collectors. Join us as we embark on a journey of exploration, where each bid holds the promise of uncovering something truly extraordinary. Welcome to the forefront of auctioning, welcome to Auction Nest.</p>
+  <button onclick="nextSlide()">
+    <img src="svg/next.svg" alt="Next" class=" absolute  top-[52rem] lg:top-96 right-0  h-12 w-20">
+  </button>
 </div>
-  
-  <div id="carousel-inner" class=" rounded-lg p-4 "></div>
-
-
-
-  <button onclick="nextSlide()" class="" > 
-    <img src="svg/next.svg" alt="Next" class="h-12 w-20">
-  </button>
-
-
 
 
   </div>
 
 
-</div>
-
-
-
-  
-  
-
-</div>
 
 
 
 
 
-  </body>
-  <script   src="./index.js">  </script>
+<!---inset-0 bg-gradient-to-r from-purple-400  to-purple-300 opacity-100 hover:opacity-20 transition-opacity duration-300-->
+
+
+
+
+
+
+
+</body>
+<script src="./index.js">  </script>
+
 </html>
