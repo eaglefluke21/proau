@@ -23,7 +23,7 @@
 
 </head>
 
-<body class=" bg-purple-300">
+<body class=" bg-purple-300 flex flex-col min-h-screen">
 
 
 
@@ -85,7 +85,7 @@
 
   <!--- Heading-->
 
-  <div class=" p-8 mt-24 text-center bg-black ">
+  <div class=" p-8 mt-24 text-center  "> <!--bg-black-->
     <p class="  font-bold font-anta text-white  text-3xl ">
       Auction Nest
     </p>
@@ -93,11 +93,11 @@
 
   <!----- Carousel-->
 
-  <div id="carousel" class=" p-2  flex flex-col justify-center  gap-8  bg-amber-400 md:grid lg:grid-cols-12 lg:items-center  ">
+  <div id="carousel" class=" p-2  flex flex-col items-center gap-8 bg-gradient-to-tl from-purple-400  to-purple-300 sm:grid sm:grid-cols-12  lg:grid lg:grid-cols-12   "> <!-- bg-amber-400-->
 
 
 
-    <div class="w- bfull bg-red-300 items-center lg:ml-40  lg:col-span-5">
+    <div class="w-72  items-center    sm:w-[30rem] sm:ml-14 sm:col-span-5 lg:w-full lg:ml-40  lg:col-span-5"> <!--bg-red-300-->
       <p class="font-comic text-gray-800 text-md p-8 rounded-lg lg:text-2xl"> Introducing Auction Nest: your ultimate online auction destination,
         where thrill seamlessly merges with convenience. At Auction Nest, we unite global buyers and sellers in a
         vibrant marketplace. Whether you're on the hunt for unique collectibles, seeking out rare treasures, or looking
@@ -109,7 +109,7 @@
     
 
 
-    <div id="carousel-inner" class=" relative  cursor-pointer rounded-lg bg-green-400 w-full mx-auto lg:ml-48 lg:w-[26rem] lg:h-[30rem] lg:col-span-5">
+    <div id="carousel-inner" class=" relative  cursor-pointer rounded-lg bg-green-400 w-72 h-96 sm:ml-40 sm:col-span-5 lg:ml-48 lg:w-[26rem] lg:h-[30rem] lg:col-span-5">
 
     
      
@@ -118,15 +118,54 @@
    <!-----Buttons-->
 <div >
   <button onclick="prevSlide()">
-    <img src="svg/previous.svg" alt="Previous" class=" absolute top-[52rem]  lg:top-96 left-0 h-12 w-20">
+    <img src="svg/previous.svg" alt="Previous" class=" absolute top-[55rem]  sm:top-80 lg:top-96 left-0 h-12 w-20">
   </button>
   <button onclick="nextSlide()">
-    <img src="svg/next.svg" alt="Next" class=" absolute  top-[52rem] lg:top-96 right-0  h-12 w-20">
+    <img src="svg/next.svg" alt="Next" class=" absolute  top-[55rem] sm:top-80 lg:top-96 right-0  h-12 w-20">
   </button>
 </div>
 
 
   </div>
+
+
+
+  <!----footer -->
+
+   <div class=" mt-auto grid grid-rows-2 grid-flow-col  gap-12 p-2 justify-center sm:grid sm:grid-rows-1 sm:gap-20">
+
+
+    <div class=" w-20 font-anta text-black text-xl flex items-center gap-2 ">
+      <img src="svg/contact.svg" alt="Mail" class="h-8 w-8 ">
+      <div>Contact</div>
+     
+    </div>
+
+    <div class=" w-20 font-anta text-black text-xl flex items-center gap-2 ">
+      <img src="svg/docs.svg" alt="Mail" class="h-8 w-8 ">
+      <div>Docs</div>
+     
+    </div>
+
+
+    <div class=" w-20 font-anta text-black text-xl flex items-center gap-2 ">
+      <img src="svg/mail.svg" alt="Mail" class="h-8 w-8 ">
+      <div>Email</div>
+     
+    </div>
+
+    
+    <div class=" w-20 font-anta text-black text-xl flex items-center gap-2 ">
+      <img src="svg/aboutus.svg" alt="Mail" class="h-8 w-8 ">
+      <div>Services</div>
+     
+    </div>
+  
+    
+
+
+
+  </div> 
 
 
 
