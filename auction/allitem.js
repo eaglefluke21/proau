@@ -28,14 +28,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Set the inner HTML of the div with item details
         div.innerHTML = `
-        <div class="relative cursor-pointer rounded-lg h-96 w-80 overflow-hidden">
-            <img src="${item.itemImageURL}" alt="${item.itemName}" class="object-cover h-full w-full">
-            <div class="absolute inset-0 bg-gradient-to-r from-purple-400  to-purple-300 opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
-            <div class="absolute bottom-0 left-0 w-full text-white p-4  opacity-0 hover:opacity-100 transition-opacity duration-300 ">
-                <h2 class="font-anta font-bold text-3xl">${item.itemName}</h2>
-                <p class="font-anta text-lg">${item.itemDescription}</p>
-            </div>
-        </div>
+        
+                  <div class=" ">
+                  <div class="relative">
+                      <img src="${item.itemImageURL}" alt="${item.itemName}" class="object-cover rounded-lg h-72 w-56 lg:w-[27rem] lg:h-[30rem]  ">
+                      
+
+                     <div class=" absolute inset-0 text-black  opacity-100 lg:opacity-0 lg:hover:opacity-100 lg:hover:bg-two-tone transition-opacity duration-300    ">
+                          <h2 class="font-anta font-bold text-3xl">${item.itemName}</h2>
+                          <p class="font-anta text-lg">${item.itemDescription}</p>
+                          </div>
+                     </div>
+                  </div>
+                  
     `;
     
 
@@ -68,3 +73,16 @@ document.getElementById("toggle").addEventListener("click", function () {
     const nav = document.getElementById("dropdown");
     nav.classList.toggle("hidden");
   });
+
+
+
+
+//   <div class="flex flex-col items-center min-h-full bg-green-400">
+
+
+//   <!-- Container for displaying images -->
+//   <div id="itemContainer" class="  w-56 h-72 lg:w-56 lg:h-72">
+//     images
+//   </div>
+
+// </div>

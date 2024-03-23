@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
                   
                       <img src="${item.itemImageURL}" alt="${item.itemName}" class=" absolute inset-0 object-cover rounded-lg h-full w-full lg:h-full lg:w-full  ">
                       
-                     <div class=" absolute inset-0   text-white  opacity-100 lg:opacity-0 lg:hover:opacity-100 lg:hover:bg-two-tone transition-opacity duration-300    ">
+                     <div class=" absolute inset-0   text-black  opacity-100 lg:opacity-0 lg:hover:opacity-100 lg:hover:bg-two-tone transition-opacity duration-300    ">
                           <h2 class="font-anta font-bold text-3xl">${item.itemName}</h2>
                           <p class="font-anta text-lg">${item.itemDescription}</p>
                           </div>
