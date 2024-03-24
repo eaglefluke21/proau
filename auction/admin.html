@@ -23,7 +23,7 @@
 
 
   </head>
-  <body class="bg-gray-100">
+  <body class="bg-purple-300 flex flex-col min-h-screen">
     <!--- toggle -->
 
 
@@ -93,28 +93,30 @@
 
     <!--- Main content-->
 
-    <!--- Heading-->
+     <!--- Heading-->
 
-    <div class="flex justify-center ">
-
-        <div>
-      <p class="font-bold font-anta text-xl w-10/12 md:w-max md:text-3xl">
-        DASHBOARD
-      </p>
-    </div>
+  <div class=" p-8 mt-24 text-center  "> <!--bg-black-->
+    <p class="  font-bold font-anta text-white  text-3xl ">
+      DASHBOARD
+    </p>
+  </div>
 
 
-       
+
+        <!---dashboard form-->
+
+    <div class="flex flex-col items-center">
+
 
         <!-- Form for adding a new item -->
        
     <div >
-        <form class="bg-white shadow-md rounded px-4 py-24 w-9/12 md:w-7/12" id="addItemForm" enctype="multipart/form-data">
+        <form class=" flex flex-col items-center gap-6   bg-purple-400 shadow-xl shadow-purple-200 rounded-lg px-4 py-24 md:px-40 md:py-20" id="addItemForm" enctype="multipart/form-data">
           <div>
             <label for="itemName">
-              <p class="font-bold font-anta text-lg md:text-2xl flex items-center" > ItemName </p>
+              <p class="font-bold font-anta text-white text-lg md:text-2xl " > Item Name </p>
               <input
-                class="w-full mb-4 p-2 font-bold font-anta shadow-lg border-solid border-2 border-blue-200 rounded md:text-lg"
+                class="w-64 p-2  font-anta text-xs shadow-lg border-solid border-2 border-white rounded-lg md:text-lg"
                 id="itemName"
                 type="text"
                 placeholder=""
@@ -123,24 +125,26 @@
           </div>
   
           <div>
-            <label for="itemImage">
+            <label for="itemImage" >
               
-              <p class="font-bold font-anta text-lg md:text-2xl flex items-center"> Add Image</p>
+              <p class=" cursor-pointer w-64 p-2  font-anta text-white text-md text-center shadow-lg border-solid border-2 border-purple-500 rounded-lg md:text-lg "> Add Image</p>
+              
               <input
-                class="w-full p-2 font-bold font-anta text-xs shadow-lg border-solid border-2 border-blue-200 rounded-lg md:text-lg"
+                class="hidden"
                 id="itemImage"
                 type="file"
                 placeholder=""
               />
+              
             </label>
           </div>
 
           <div>
             <label for="itemDescription">
               
-              <p class="font-bold font-anta text-lg md:text-2xl flex items-center"> Description</p>
+              <p class="font-bold font-anta text-white text-lg md:text-2xl "> Description</p>
               <input
-                class="w-full p-2 font-bold font-anta text-xs shadow-lg border-solid border-2 border-blue-200 rounded-lg md:text-lg"
+                class="w-64 p-2  font-anta text-xs shadow-lg border-solid border-2 border-white rounded-lg md:text-lg"
                 id="itemDescription"
                 type="text"
                 placeholder=""
@@ -148,14 +152,55 @@
             </label>
           </div>
   
-          <button type="button" id="addItem" class="bg-sky-500 rounded-lg mb-4 px-12 py-2 hover:bg-sky-300 md:px-24">ADD ITEM</button>
+          <button type="button" id="addItem" class="bg-purple-300 font-anta rounded-lg  px-12 py-2 border-white hover:bg-purple-500 hover:text-white md:px-24">ADD ITEM</button>
   
   
         </form>
       </div>
 
-        
-</div>
+        </div>
+
+
+
+    <!----footer -->
+
+    <div class=" mt-auto grid grid-rows-2 grid-flow-col  gap-x-12 gap-y-4 p-2 justify-center sm:grid sm:grid-rows-1 sm:gap-20">
+
+
+      <div class=" w-20 font-anta text-black text-xl flex items-center gap-2 ">
+        <img src="svg/contact.svg" alt="Mail" class="h-8 w-8 ">
+        <div>Contact</div>
+       
+      </div>
+  
+      <div class=" w-20 font-anta text-black text-xl flex items-center gap-2 ">
+        <img src="svg/docs.svg" alt="Mail" class="h-8 w-8 ">
+        <div>Docs</div>
+       
+      </div>
+  
+  
+      <div class=" w-20 font-anta text-black text-xl flex items-center gap-2 ">
+        <img src="svg/mail.svg" alt="Mail" class="h-8 w-8 ">
+        <div>Email</div>
+       
+      </div>
+  
+      
+      <div class=" w-20 font-anta text-black text-xl flex items-center gap-2 ">
+        <img src="svg/aboutus.svg" alt="Mail" class="h-8 w-8 ">
+        <div>Services</div>
+       
+      </div>
+    
+      
+  
+  
+  
+    </div> 
+
+
+
 
     
   </body>

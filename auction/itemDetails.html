@@ -23,7 +23,7 @@
 
 
   </head>
-  <body class="bg-gray-100">
+  <body class="bg-purple-300 flex flex-col min-h-screen">
     <!--- toggle -->
 
 
@@ -93,57 +93,107 @@
 
     <!--- Main content-->
 
-    <!--- Heading-->
+    <div class="flex flex-col items-center gap-8 mt-8 p-2">
 
-    <div class="flex justify-center">
-      <p class="font-bold font-anta text-xl w-10/12 md:w-max md:text-3xl" id="itemName">
-        
-      </p>
-    </div>
+      <div>
+        <p class="font-bold font-anta text-2xl " id="itemName">
+          
+        </p>
+      </div>
 
-    <div class="flex font-anta justify-center mt-2 mb-2">
-      <p id="itemDescription"></p>
-    </div>
+      <div class=" font-anta text-md ">
+        <p id="itemDescription"></p>
+      </div>
+  
 
+       <!--- image-->
 
-
-    <!--- image-->
-
-    <div class="flex justify-center p-8">
+    <div >
       <img
-      class="w-60 h-50 rounded-lg" id="itemImageURL"
+      class=" rounded-lg w-60 h-50 md:w-80 " id="itemImageURL"
         src=""
         
       />
     </div>
 
+    
   <!------ delete button -->
 
-  <div class=" flex justify-center p-8">
-    <button class="border-solid bg-black font-anta text-2xl bg-yellow-500 rounded-lg mb-4 px-6 py-2" id="deleteButton"> Delete</button>
+  <div>
+    <button class="border-solid font-anta text-2xl bg-yellow-500 rounded-lg  px-6 py-2" id="deleteButton"> Delete</button>
   </div>
 
 
-    <!---orders -->
+   <!---orders -->
 
-    <div class="flex justify-center p-4">
-      <div class="flex flex-col font-anta  text-sm md:text-2xl">
-        <ul>
-          <li
-            class="bg-sky-500 rounded-lg mb-4 px-6 py-2 hover:bg-sky-300 md:px-12"
-          >
-            Place New Bid 
-          </li>
+    
+   <div >
+    <ul>
+      <li
+        class="bg-sky-500 rounded-lg mb-4 px-6 py-2 hover:bg-sky-300 md:px-12"
+      >
+        Place New Bid 
+      </li>
 
-          <li
-            class="bg-rose-500 rounded-lg px-6 py-2 hover:bg-rose-300 md:px-12"
-          >
-            Past Bid 
-          </li>
-        </ul>
-      </div>
+      <li
+        class="bg-rose-500 rounded-lg px-6 py-2 hover:bg-rose-300 md:px-12"
+      >
+        Add To List
+      </li>
+    </ul>
+  </div>
+
+
     </div>
 
+    
+
+  
+
+
+   
+
+
+   
+
+
+      
+     <!----footer -->
+
+   <div class=" mt-auto grid grid-rows-2 grid-flow-col  gap-x-12 gap-y-4 p-2 justify-center sm:grid sm:grid-rows-1 sm:gap-20">
+
+
+    <div class=" w-20 font-anta text-black text-xl flex items-center gap-2 ">
+      <img src="svg/contact.svg" alt="Mail" class="h-8 w-8 ">
+      <div>Contact</div>
+     
+    </div>
+
+    <div class=" w-20 font-anta text-black text-xl flex items-center gap-2 ">
+      <img src="svg/docs.svg" alt="Mail" class="h-8 w-8 ">
+      <div>Docs</div>
+     
+    </div>
+
+
+    <div class=" w-20 font-anta text-black text-xl flex items-center gap-2 ">
+      <img src="svg/mail.svg" alt="Mail" class="h-8 w-8 ">
+      <div>Email</div>
+     
+    </div>
+
+    
+    <div class=" w-20 font-anta text-black text-xl flex items-center gap-2 ">
+      <img src="svg/aboutus.svg" alt="Mail" class="h-8 w-8 ">
+      <div>Services</div>
+     
+    </div>
+  
+    
+
+
+
+  </div> 
     
   </body>
 
