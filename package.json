@@ -4,7 +4,11 @@
 
   "scripts": {
 
-    "dev": "npx tailwindcss -i ./src/input.css -o ./auction/output.css --watch"
+    "start": "nodemon --env-file=.env server/index.js",
+
+    "dev": "npx tailwindcss -i ./src/input.css -o ./auction/output.css --watch",
+
+    "vercel-build": "echo 'No build necessary'"
 
   },
 
@@ -48,7 +52,9 @@
 
     "mongoose": "^8.2.0",
 
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+
+    "nodemon": "^3.1.0"
 
   }
 
