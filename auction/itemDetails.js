@@ -7,7 +7,7 @@ const itemId = urlParams.get('itemId');
 console.log('item id:', itemId);
 
 // Fetch item details from backend using item ID
-const backendBaseUrl = 'http://localhost:3000';
+const backendBaseUrl = '';
 fetch(`${backendBaseUrl}/admin/getItemDetails?itemId=${itemId}`)
 .then(response => {
     if(!response.ok){

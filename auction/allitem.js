@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const backendBaseUrl = 'http://localhost:3000';
+  const backendBaseUrl = '';
 
   // Fetching the item data
   fetch(`${backendBaseUrl}/admin/listimages`)

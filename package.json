@@ -3,8 +3,10 @@
   "type": "module",
 
   "scripts": {
+    "start": "node server/index.js",
 
-    "start": "nodemon --env-file=.env server/index.js",
+
+    "local": "nodemon --env-file=.env server/index.js",
 
     "dev": "npx tailwindcss -i ./src/input.css -o ./auction/output.css --watch",
 

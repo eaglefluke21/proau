@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
  // Assuming backend is hosted locally on port 3000
- const backendBaseUrl = 'http://localhost:3000';
+ const backendBaseUrl = '';
 
  
 function signup() {
