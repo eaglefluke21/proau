@@ -31,12 +31,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
                   <div class=" ">
                   <div class="relative">
-                      <img src="${item.itemImageURL}" alt="${item.itemName}" class="object-cover rounded-lg h-72 w-56 lg:w-[27rem] lg:h-[30rem]  ">
+                      <img src="${item.itemImageURL}" alt="${item.itemName}" class="object-cover rounded-lg h-96 w-72 lg:w-[27rem] lg:h-[30rem]  ">
                       
 
                      <div class=" absolute inset-0 text-black  opacity-100 lg:opacity-0 lg:hover:opacity-100 lg:hover:bg-two-tone transition-opacity duration-300    ">
-                          <h2 class="font-anta font-bold text-3xl">${item.itemName}</h2>
-                          <p class="font-anta text-lg">${item.itemDescription}</p>
+                          <h2 class="font-anta font-bold text-3xl p-2">${item.itemName}</h2>
+                          <p class="font-anta text-lg p-2">${item.itemDescription}</p>
                           </div>
                      </div>
                   </div>

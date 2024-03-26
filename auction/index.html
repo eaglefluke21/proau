@@ -20,7 +20,7 @@
 
 </head>
 
-<body class=" bg-purple-300 flex flex-col min-h-screen">
+<body class=" bg-white flex flex-col min-h-screen">
 
 
 
@@ -38,7 +38,7 @@
     <ul>
       <a href="/index.html">
         <li class="relative top-20">
-          <span class="flex items-center text-lg rounded-lg hover:bg-purple-400">
+          <span class="flex items-center text-lg rounded-lg hover:bg-gray-400">
             <img src="/svg/home.svg" class="h-11 w-7 m-2" alt="" /> Home
           </span>
         </li>
@@ -46,22 +46,22 @@
 
 
       <li class="relative top-20">
-        <span class="flex items-center text-lg rounded-lg hover:bg-purple-400" id="Items">
+        <span class="flex items-center text-lg rounded-lg hover:bg-gray-400" id="Items">
           <img src="/svg/bag.svg" class="h-12 w-8 m-2" alt="" /> Items
         </span>
         <ul class="text-lg hidden md:text-xl" id="dropdown">
           <a href="/allitem.html">
-            <li class="hover:bg-purple-300 rounded-lg ml-4 mb-2">All Items</li>
+            <li class="hover:bg-gray-300 rounded-lg ml-4 mb-2">All Items</li>
           </a>
 
-          <li class="hover:bg-purple-300 rounded-lg ml-4">Your Items</li>
+          <li class="hover:bg-gray-300 rounded-lg ml-4">Your Items</li>
         </ul>
       </li>
 
 
       <a href="/account.html">
         <li class="relative top-20">
-          <span class="flex items-center text-lg rounded-lg hover:bg-purple-400">
+          <span class="flex items-center text-lg rounded-lg hover:bg-gray-400">
             <img src="/svg/account.svg" class="h-12 w-8 m-2" alt="" /> Account
           </span>
         </li>
@@ -69,7 +69,7 @@
 
       <a href="/admin.html">
         <li class="relative top-20">
-          <span class="flex items-center text-lg rounded-lg hover:bg-purple-400">
+          <span class="flex items-center text-lg rounded-lg hover:bg-gray-400">
             <img src="/svg/dashboard.svg" class="h-12 w-8 m-2" alt="" /> Admin
           </span>
         </li>
@@ -83,19 +83,19 @@
   <!--- Heading-->
 
   <div class=" p-8 mt-24 text-center  "> <!--bg-black-->
-    <p class="  font-bold font-anta text-white  text-3xl ">
+    <p class="  font-bold font-anta text-black  text-3xl ">
       Auction Nest
     </p>
   </div>
 
   <!----- Carousel-->
 
-  <div id="carousel" class=" p-2  flex flex-col items-center gap-8 bg-gradient-to-b from-purple-400  to-purple-300 rounded-lg sm:p-12 sm:grid sm:grid-cols-12  lg:grid lg:grid-cols-12   "> <!-- bg-amber-400-->
+  <div id="carousel" class=" p-2  flex flex-col  items-center bg-gradient-to-b from-slate-400  to-slate-300 gap-8  rounded-lg sm:p-12 sm:grid sm:grid-cols-12  lg:grid lg:grid-cols-12   "> <!-- bg-amber-400-->
 
 
 
-    <div class="w-72  items-center    sm:w-[30rem] sm:ml-14 sm:col-span-5 lg:w-full lg:ml-40  lg:col-span-5"> <!--bg-red-300-->
-      <p class="font-comic text-gray-800 text-md  p-8 rounded-lg lg:text-2xl"> Introducing Auction Nest: your ultimate online auction destination,
+    <div class="w-96  sm:w-[30rem] sm:ml-14 sm:col-span-5 lg:w-full lg:ml-40  lg:col-span-5"> <!--bg-red-300-->
+      <p class="font-comic text-gray-800 text-lg  p-8 rounded-lg lg:text-2xl"> Introducing Auction Nest: your ultimate online auction destination,
         where thrill seamlessly merges with convenience. At Auction Nest, we unite global buyers and sellers in a
         vibrant marketplace. Whether you're on the hunt for unique collectibles, seeking out rare treasures, or looking
         to showcase your own prized possessions, our platform offers the ideal space to connect enthusiasts and
@@ -129,7 +129,15 @@
 
   <!----footer -->
 
-   <div class=" mt-auto grid grid-rows-2 grid-flow-col  gap-x-12 gap-y-4 p-2 justify-center sm:grid sm:grid-rows-1 sm:gap-20">
+   <div class=" mt-auto grid grid-rows-2 grid-flow-col  gap-x-12 gap-y-6 p-2 justify-center sm:grid sm:grid-rows-1 sm:gap-20">
+
+
+    
+    <div class=" w-20 font-anta text-black text-xl flex items-center gap-2 ">
+      <img src="/svg/mail.svg" alt="Mail" class="h-8 w-8 ">
+      <div>Email</div>
+     
+    </div>
 
 
     <div class=" w-20 font-anta text-black text-xl flex items-center gap-2 ">
@@ -144,20 +152,12 @@
      
     </div>
 
-
-    <div class=" w-20 font-anta text-black text-xl flex items-center gap-2 ">
-      <img src="/svg/mail.svg" alt="Mail" class="h-8 w-8 ">
-      <div>Email</div>
-     
-    </div>
-
     
     <div class=" w-20 font-anta text-black text-xl flex items-center gap-2 ">
       <img src="/svg/aboutus.svg" alt="Mail" class="h-8 w-8 ">
       <div>Services</div>
      
     </div>
-  
     
 
 
