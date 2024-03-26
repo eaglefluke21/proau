@@ -8,9 +8,7 @@
 
     "local": "nodemon --env-file=.env server/index.js",
 
-    "dev": "npx tailwindcss -i ./src/input.css -o ./auction/output.css --watch",
-
-    "vercel-build": "echo 'No build necessary'"
+    "dev": "npx tailwindcss -i ./src/input.css -o ./auction/output.css --watch"
 
   },
 
