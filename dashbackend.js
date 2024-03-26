@@ -4,7 +4,7 @@ import cors from 'cors';
 import multer from 'multer';
 import mongoose from 'mongoose';
 import admin from 'firebase-admin';
-import serviceAccount from '../key/serviceAccountKey.js';
+import serviceAccount from './key/serviceAccountKey.js';
 import { getStorage, ref, listAll , getMetadata} from "firebase/storage";
 import { initializeApp } from "firebase/app";
 import { getDownloadURL } from "firebase/storage";

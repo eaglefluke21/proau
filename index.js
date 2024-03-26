@@ -27,10 +27,14 @@ app.use(express.urlencoded({ extended: true}));
 app.use(cors());
 
 //serve static files
-const staticPath = path.join(__dirname, '..', 'auction');
+const staticPath = path.join(__dirname,  'auction');
 console.log('staticPath:', staticPath);
 app.use(express.static(staticPath));
 
+
+app.get('/', (req, res) => {
+  res.send('Hello from Express server!');
+});
 
 
 
