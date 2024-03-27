@@ -31,6 +31,7 @@ fetch(`${backendBaseUrl}/admin/getItemDetails?itemId=${itemId}`)
 })
 .catch(error => console.error('Error fetching item details:', error ));
 
+//Delete item
 function deleteItem(itemId){
     console.log("checking item id:", itemId );
     console.log("checking image URL:", itemImageURL.src );
@@ -54,6 +55,15 @@ function deleteItem(itemId){
     })
     .catch(error => console.error('Error deleting item:', error));
 }
+
+//buy item
+const BuyButton = document.getElementById("buybutton");
+
+BuyButton.addEventListener("click",function(){
+
+    window.location.href=`checkout.html?itemId=${itemId}`;
+
+});
 
 });
 
