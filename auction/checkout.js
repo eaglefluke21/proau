@@ -8,8 +8,11 @@ const itemId = urlParams.get('itemId');
 console.log('item id:', itemId);
 
 
-// Fetch item details from backend using item ID
+
 const backendBaseUrl = '';
+
+
+// Fetch item details from backend using item ID
 fetch(`${backendBaseUrl}/admin/getItemDetails?itemId=${itemId}`)
 .then(response => {
     if(!response.ok){
@@ -24,7 +27,55 @@ fetch(`${backendBaseUrl}/admin/getItemDetails?itemId=${itemId}`)
 
 })
 .catch(error => console.error('Error fetching item details:', error ));
+
+
+// fetching data of delivery address and posting it to database
     
+const AddAddressBtn = document.getElementById('addAddressBtn');
+
+AddAddressBtn.addEventListener('click', addAddress);
+
+
+
+ 
+function addAddress() {
+    const name = document.getElementById('customerName').value;
+    const mobileno = document.getElementById('customerMobileno').value;
+    const pincode = document.getElementById('pinCode').value;
+    const flat = document.getElementById('flatNo').value;
+    const area = document.getElementById('Area').value;
+    const town = document.getElementById('Town').value;
+    const state = document.getElementById('State').value;
+
+    
+
+
+
+
+   
+
+    fetch(`${backendBaseUrl}/useaddress`, { // Corrected endpoint URL
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, mobileno, pincode ,flat,area,town,state })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
 
 });
 
