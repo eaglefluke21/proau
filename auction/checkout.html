@@ -102,26 +102,27 @@
   </div>
 
     <!---Checkout Content-->
-    <div class="flex flex-col items-center bg-two-tonea p-20">
+    <div class="flex flex-col items-center bg-two-tonea p-20  ">
 
         <!--- Delivery address-->
-
+          <div>
 
         <!---Heading Delivery-->
 
         
-        <div class="flex flex-row items-center justify-between  rounded-lg p-2 w-80 border-b-2 border-gray-400 ">
+        <div class="flex flex-row items-center justify-between  rounded-lg p-2 w-80 border-b-2 border-gray-400 md:w-[45rem] ">
 
             <div><p class=" font-anta text-black text-xl "> Enter Delivery Address</p> </div>
 
-          <div>  <img id="edit" src="/svg/edit.svg" class="h-12 w-8 " alt="" />  </div> 
+          <div>  <img id="editdelivery" src="/svg/edit.svg" class="h-12 w-8 " alt="" />  </div> 
         </div>
        
         <!---Delivery form-->
 
             <div id="delivery" class="  hidden overflow-hidden transition-all duration-800 ease-in-out delay-800" >
-                <form class=" flex flex-col w-80 items-center gap-6  rounded-lg px-4 py-4 " id="delivery" enctype="multipart/form-data">
+                <form class=" flex flex-col w-80 items-center gap-6  rounded-lg px-4 py-4 md:w-full" id="delivery" enctype="multipart/form-data">
 
+                  
                     <!--customerName-->
                   <div>
                     <label for="customerName">
@@ -236,21 +237,119 @@
               </div>
 
 
+              </div>
 
-        <!---Payment Method-->
+<!----------------------------------------------Payment Method-------------------------------------------------->
 
         
 
         <div>
 
             <!---Heading Payment-->
-        <div class="flex flex-row items-center justify-between  bg-two-tonea rounded-lg p-2 w-80 border-b-2 border-gray-400">
+        <div class="flex flex-row items-center justify-between  bg-two-tonea rounded-lg p-2 w-80 border-b-2 border-gray-400 md:w-[45rem]">
 
             <div><p class=" font-anta text-black text-xl ">Payment Method</p> </div>
 
-          <div>  <img id="payment" src="/svg/paymentmethod.svg" class="h-12 w-8 ml-12" alt="" />  </div> 
+          <div>  <img id="editpayment" src="/svg/paymentmethod.svg" class="h-12 w-8 ml-12" alt="" />  </div> 
         </div>
 
+
+         <!---Payment form-->
+
+         <div id="payment" class="  hidden overflow-hidden transition-all duration-800 ease-in-out delay-800" >
+          <form class=" flex flex-col w-80 items-center gap-6  rounded-lg px-4 py-4 md:w-full" id="delivery" enctype="multipart/form-data">
+
+              <!--PaymentCardName-->
+            <div>
+              <label for="paymentcardName">
+                <p class=" font-comic text-black text-md " > Name </p>
+                <input
+                  class="w-80 p-2  font-anta text-xs  border-solid border-2 border-black rounded-lg md:text-lg"
+                  id="paymentcardName"
+                  type="text"
+                  placeholder=""
+                />
+              </label>
+            </div>
+    
+            <!--cardnum-->
+  
+            <div>
+              <label for="cardnum">
+                
+                <p class=" font-comic text-black text-md  "> Card Number </p>
+                <input
+                  class="w-80 p-2  font-anta text-xs shadow-lg border-solid border-2 border-black rounded-lg md:text-lg"
+                  id="cardnum"
+                  type="text"
+                  placeholder=""
+                />
+              </label>
+            </div>
+
+
+             <!---Expiration date , year-->
+         <div class="flex flex-row gap-x-6">
+
+          <!--Expiration date-->
+         <div>
+          <label for="expDate">
+            
+            <p class=" font-comic text-black text-md  "> Expiration date </p>
+            <input
+              class="w-36 p-2  font-anta text-xs shadow-lg border-solid border-2 border-black rounded-lg md:text-lg"
+              id="expDate"
+              type="text"
+              placeholder=""
+            />
+          </label>
+        </div>
+
+        <!--Expiration year-->
+        <div>
+          <label for="expYear">
+            
+            <p class=" font-comic text-black text-md  "> Year </p>
+            <input
+              class="w-36 p-2  font-anta text-xs shadow-lg border-solid border-2 border-black rounded-lg md:text-lg"
+              id="expYear"
+              type="text"
+              placeholder=""
+            />
+          </label>
+        </div>
+
+
+      </div>
+
+
+
+
+            <!---securityCode-->
+            <div>
+              <label for="securityCode">
+                
+                <p class=" font-comic text-black text-md  "> Security Code</p>
+                <input
+                  class="w-80 p-2  font-anta text-xs shadow-lg border-solid border-2 border-black rounded-lg md:text-lg"
+                  id="securityCode"
+                  type="text"
+                  placeholder=""
+                />
+              </label>
+            </div>
+
+            
+
+
+                
+        
+    
+            <button type="button" id="addAddress" class="bg-gray-300 font-comic rounded-lg  px-6 py-2 border-white hover:bg-gray-500 hover:text-white ">Use Adress</button>
+    
+    
+          </form>
+        </div>
 
 
         
@@ -258,34 +357,66 @@
         </div>
 
 
-        <!----Offers-->
+<!-------------------------------------------------Offers------------------------------------------------------>
         <div>
 
                <!---Heading Offers-->
-        <div class="flex flex-row items-center justify-between  bg-two-tonea rounded-lg p-2 w-80 border-b-2 border-gray-400">
+        <div class="flex flex-row items-center justify-between  bg-two-tonea rounded-lg p-2 w-80 border-b-2 border-gray-400 md:w-[45rem]">
 
             <div><p class=" font-anta text-black text-xl ">Offers</p> </div>
 
-          <div>  <img id="offer" src="/svg/offer.svg" class="h-12 w-8 ml-12" alt="" />  </div> 
+          <div>  <img id="editoffer" src="/svg/offer.svg" class="h-12 w-8 ml-12" alt="" />  </div> 
         </div>
 
+
+         <!---offer form-->
+
+         <div id="offer" class="  hidden overflow-hidden transition-all duration-800 ease-in-out delay-800" >
+
+          <span class="py-2 flex flex-row items-center justify-center ">
+             <p class="font-comic font-bold font-lg text-center text-black md:text-xl "> No Offers yet</p>
+             <img id="nooffer" src="/svg/nooffer.svg" class="h-12 w-8 ml-12" alt="" />
+          </span>
+          </div>
+
+
         </div>
 
 
-        <!--- Items & Delivery-->
+<!-------------------------------------------Items & Delivery--------------------------------------------------->
         <div>
 
                  <!---Heading Items&Delivery-->
-        <div class="flex flex-row items-center justify-between  bg-two-tonea rounded-lg p-2 w-80 border-b-2 border-gray-400">
+        <div class="flex flex-row items-center justify-between  bg-two-tonea rounded-lg p-2 w-80 border-b-2 border-gray-400 md:w-[45rem]">
 
-            <div><p class=" font-anta text-black text-xl "> Items & Delivery </p> </div>
+            <div><p class=" font-anta text-black text-xl  "> Items & Delivery </p> </div>
 
-          <div>  <img id="itemsdel" src="/svg/selectitem.svg" class="h-12 w-8 ml-12" alt="" />  </div> 
+          <div>  <img id="editItemsdeli" src="/svg/selectitem.svg" class="h-12 w-8 ml-12" alt="" />  </div> 
         </div>
 
+
+
+         <!---offer form-->
+
+         <div id="Itemsdeli" class="  hidden overflow-hidden transition-all duration-800 ease-in-out delay-800" >
+
+          <span class="py-2 flex flex-col items-center justify-center gap-y-4 md:flex-row md:gap-x-24 md:text-xl ">
+             <p class="font-comic font-bold font-lg text-center text-black  "> Delivery in 4 Days</p>
+             <img
+               class=" rounded-lg w-40 h-30  " id="itemImageURL"
+               src=""
+                     />
+          </span>
+
+
+          </div>
+
+
         </div>
 
-        <!--- Proceed Button -->
+
+
+<!----------------------------------------Proceed Button-------------------------------------------------------->
 
     
    <div >
