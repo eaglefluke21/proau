@@ -36,6 +36,11 @@ document.getElementById("editdelivery").addEventListener("click", function () {
     addresstog.classList.toggle("hidden");
 
 
+     // Hide other sections
+     document.getElementById("payment").classList.add("hidden");
+     document.getElementById("offer").classList.add("hidden");
+     document.getElementById("Itemsdeli").classList.add("hidden");
+
   });
 
   // payment 
@@ -43,6 +48,10 @@ document.getElementById("editpayment").addEventListener("click", function () {
   const paymenttog = document.getElementById("payment");
   paymenttog.classList.toggle("hidden");
 
+   // Hide other sections
+   document.getElementById("delivery").classList.add("hidden");
+   document.getElementById("offer").classList.add("hidden");
+   document.getElementById("Itemsdeli").classList.add("hidden");
 
 });
 
@@ -51,6 +60,11 @@ document.getElementById("editpayment").addEventListener("click", function () {
   document.getElementById("editoffer").addEventListener("click", function () {
     const offertog = document.getElementById("offer");
     offertog.classList.toggle("hidden");
+
+     // Hide other sections
+   document.getElementById("delivery").classList.add("hidden");
+   document.getElementById("payment").classList.add("hidden");
+   document.getElementById("Itemsdeli").classList.add("hidden");
   
   
   });
@@ -60,6 +74,11 @@ document.getElementById("editpayment").addEventListener("click", function () {
     document.getElementById("editItemsdeli").addEventListener("click", function () {
       const offertog = document.getElementById("Itemsdeli");
       offertog.classList.toggle("hidden");
+
+       // Hide other sections
+   document.getElementById("delivery").classList.add("hidden");
+   document.getElementById("offer").classList.add("hidden");
+   document.getElementById("payment").classList.add("hidden");
     
     
     });
