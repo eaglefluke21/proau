@@ -1,5 +1,8 @@
 
+
 document.addEventListener('DOMContentLoaded', function() {
+
+    let prodname;
     
 // Extract item Id from URL query parameters
 const queryString = window.location.search;
@@ -24,6 +27,10 @@ fetch(`${backendBaseUrl}/admin/getItemDetails?itemId=${itemId}`)
     
     document.getElementById('itemImageURL').src = data.itemImageURL;
 
+    prodname = data.itemName; // assigning value to prod name
+
+    console.log('checking name ', prodname);
+
 
 })
 .catch(error => console.error('Error fetching item details:', error ));
@@ -46,6 +53,7 @@ function addAddress() {
     const area = document.getElementById('Area').value;
     const town = document.getElementById('Town').value;
     const state = document.getElementById('State').value;
+    const productname = prodname;
 
     
 
@@ -59,7 +67,7 @@ function addAddress() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ name, mobileno, pincode ,flat,area,town,state })
+        body: JSON.stringify({ name, mobileno, pincode ,flat,area,town,state, productname })
     })
     .then(response => {
         if (!response.ok) {

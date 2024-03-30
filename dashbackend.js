@@ -24,7 +24,7 @@ const firebaseapp = initializeApp(firebaseConfig);
 
 
 
-const app = express();
+const dashbackendapp = express();
 const USER = process.env.MONGO_USER;
 const PASSWORD = process.env.MONGO_PASSWORD;
 
@@ -50,9 +50,9 @@ mongoose.connect(
 });
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(cors());
+dashbackendapp.use(bodyParser.urlencoded({ extended: false }));
+dashbackendapp.use(bodyParser.json());
+dashbackendapp.use(cors());
 
 // Set up multer for handling file uploads
 const storage = multer.memoryStorage();
@@ -75,7 +75,7 @@ const Item = mongoose.model('Item', itemSchema);
 
 
 // Handle POST request for adding item
-app.post('/admin/additem', upload.single('itemImage'), (req, res) => {
+dashbackendapp.post('/admin/additem', upload.single('itemImage'), (req, res) => {
   const itemName = req.body.itemName;
   const itemDescription = req.body.itemDescription;
 
@@ -156,7 +156,7 @@ app.post('/admin/additem', upload.single('itemImage'), (req, res) => {
 
   
 // Handle GET request for listing images
-app.get('/admin/listimages', async (req, res) => {
+dashbackendapp.get('/admin/listimages', async (req, res) => {
   try {
     // Fetch items from the database
     const items = await Item.find({}).select('itemName itemDescription itemImageURL');
@@ -171,7 +171,7 @@ app.get('/admin/listimages', async (req, res) => {
     
   // Handle Get requests for getting images detail by id
 
-  app.get('/admin/getItemDetails', async(req, res) => {
+  dashbackendapp.get('/admin/getItemDetails', async(req, res) => {
     try {
       // Fetching itemId from query parameters
       const itemId = req.query.itemId;
@@ -195,7 +195,7 @@ app.get('/admin/listimages', async (req, res) => {
   });
 
 // Handle Delete request for deleting an item by id
-app.delete('/admin/deleteItem', async (req, res) => {
+dashbackendapp.delete('/admin/deleteItem', async (req, res) => {
   try {
     // Fetch itemId from request body
     const itemId = req.body.itemId;
@@ -231,6 +231,6 @@ app.delete('/admin/deleteItem', async (req, res) => {
   }
 });
 
+  export { Item };
 
-
-  export default app;
+  export default dashbackendapp;

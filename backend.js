@@ -1,9 +1,10 @@
 import express from 'express';
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import { Item } from './dashbackend.js';
 
-const app = express();
+const backendapp = express();
 const USER = process.env.MONGO_USER;
 const PASSWORD = process.env.MONGO_PASSWORD;
 
@@ -18,9 +19,9 @@ mongoose.connect(
 
 
 //Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cors());
+backendapp.use(bodyParser.urlencoded({ extended: true }));
+backendapp.use(bodyParser.json());
+backendapp.use(cors());
 
   // defining user schema/database
 
@@ -36,7 +37,7 @@ app.use(cors());
 
   //Routes for signup
 
-  app.post('/signup', async (req, res) => {
+  backendapp.post('/signup', async (req, res) => {
     const { email, password } = req.body;
     
     try {
@@ -49,7 +50,7 @@ app.use(cors());
 
   //Routes for signin
 
-  app.post('/signin', async (req, res) => {
+  backendapp.post('/signin', async (req, res) => {
     const { email, password } = req.body;
     
     try {
@@ -66,6 +67,8 @@ app.use(cors());
 
   // defining deliveryaddress schema/database
 
+
+
   const deliverySchema = new mongoose.Schema({
     name: String,
     mobileno: String,
@@ -73,25 +76,58 @@ app.use(cors());
     flat: String,
     area: String,
     town: String,
-    state: String
+    state: String,
+    productname: String
+    
   });
 
   const Delivery = mongoose.model('delivery', deliverySchema);
 
 
-  // Routes for customer address
+  // Route for  adding customer address
 
-  app.post('/useaddress', async (req, res) => {
-    const { name, mobileno, pincode , flat , area, town ,state } = req.body;
+  backendapp.post('/useaddress', async (req, res) => {
+    const { name, mobileno, pincode , flat , area, town ,state , productname } = req.body;
     
     try {
-      const delivery = await Delivery.create({ name, mobileno, pincode , flat ,area ,town ,state });
+      const delivery = await Delivery.create({ name, mobileno, pincode , flat ,area ,town ,state, productname });
       res.status(201).json({ message: ' Delivery address added successfully', delivery });
     } catch (error) {
       res.status(400).json({ message: 'Failed to add delivery address', error });
     }
   });
 
+
+  // Route for  getting customer address
+  backendapp.get('/useaddress/listdata', async(req,res) =>{
+    try{
+      // fetch items from database
+      const items = await Delivery.find({}).select('name mobileno pincode flat area town state productname ');
+
+      res.status(200).json({items});
+    } catch(error){
+      console.error('Error fetching items:', error);
+      res.status(500).json({ error: "Failed to fetch items"});
+    }
+  });
+
+ // Route for  deleting customer address
+ backendapp.delete('/useaddress/deletedata', async(req,res) =>{
+
+          deliveryId = data._id;
+
+          try {
+            const deleteDelivery = await Delivery.findByIdAndDelete(deliveryId);
+            if (!deleteDelivery) {
+              return res.status(404).json({ message: "Delivery address not found" });
+            }
+            res.status(200).json({ message: "Delivery address deleted successfully" });
+          } catch (error) {
+            console.error('Error deleting delivery address:', error);
+            res.status(500).json({ error: "Failed to delete delivery address" });
+          }
+});
+
   
 
-  export default app;
+  export default backendapp;
