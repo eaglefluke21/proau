@@ -29,17 +29,20 @@ document.addEventListener('DOMContentLoaded', function() {
           // Set the inner HTML of the div with item details
           div.innerHTML = `
           
-          <div>
+          <div class="bg-slate-200 rounded-lg h-96 w-72 ">
 
-          <h2 class="font-anta font-bold text-xl p-2">Customer Name ${item.name}</h2>
-          <p class="font-anta text-lg p-2"> Product Name ${item.productname}</p>
-          <p class="font-anta text-lg p-2">Mobile no ${item.mobileno}</p>
-          <p class="font-anta text-lg p-2">Pincode ${item.pincode}</p>
-          <p class="font-anta text-lg p-2">Flat no ${item.flat}</p>
-          <p class="font-anta text-lg p-2">Area ${item.area}</p>
-          <p class="font-anta text-lg p-2">Town ${item.town}</p>
-          <p class="font-anta text-lg p-2">State ${item.state}</p>
+          <div class="flex flex-row justify-between ">
+          <h2 class=" font-anta  text-xl p-2">Customer Name: ${item.name}</h2>
           <button class="deleteBtn" data-item-id="${itemId}"> <img src="/svg/bin.svg" alt="" class="h-8 w-8 "></button>
+          </div>
+
+          <p class="font-comic text-lg p-2"> Product Name:    ${item.productname}</p>
+          <p class="font-comic text-lg p-2">Mobile no:    ${item.mobileno}</p>
+          <p class="font-comic text-lg p-2">Pincode: ${item.pincode}</p>
+          <p class="font-comic text-lg p-2">Flat no: ${item.flat}</p>
+          <p class="font-comic text-lg p-2">Area: ${item.area}</p>
+          <p class="font-comic text-lg p-2">Town: ${item.town}</p>
+          <p class="font-comic text-lg p-2">State: ${item.state}</p>
           
 
           </div>
@@ -60,8 +63,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Function to delete item by ID
   function deleteItem(itemId) {
-    fetch(`${backendBaseUrl}/useaddress/${itemId}`, {
-      method: 'DELETE'
+    fetch(`${backendBaseUrl}/useaddress/deletedata`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ itemId})
     })
     .then(response => {
       if (response.ok) {
@@ -73,6 +80,9 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .catch(error => console.error('Error deleting item:', error));
   }
+
+
+
   });
   
 

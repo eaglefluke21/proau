@@ -114,7 +114,7 @@ backendapp.use(cors());
  // Route for  deleting customer address
  backendapp.delete('/useaddress/deletedata', async(req,res) =>{
 
-          deliveryId = data._id;
+          const deliveryId = req.body.itemId;
 
           try {
             const deleteDelivery = await Delivery.findByIdAndDelete(deliveryId);
