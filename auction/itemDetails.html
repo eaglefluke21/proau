@@ -128,7 +128,57 @@
       />
     </div>
 
+    <!-----Bidbutton-->
+    <div>
+      <button onclick="showDialog()" class="border-solid font-anta text-2xl bg-rose-300 rounded-lg  hover:text-white hover:bg-rose-400  px-6 py-2" id="BidButton"> Bid </button>
+    </div>
+
+
+    <!---Dialog-->
+    <div 
+    id="dialog"
+    class="fixed inset-0 flex w-screen h-screen bg-gray-100 bg-opacity-30 flex flex-col justify-center items-center  hidden    ">
+
+      
+      <form id="formdialog" class="flex flex-col items-center justify-center items-center gap-4 border-[2px] border-gray-200 bg-white py-3 px-6 rounded-lg shadow-lg shadow-rose-300 opacity-100 ">
+
+        <div class="font-anta text-2xl ">
+          Enter Bid Amount
+        </div>
+
+
+      <div>
+        <input
+        class="w-64 md:w-80 p-2 font-bold font-anta text-xs shadow-lg border-solid border-2 border-gray-400 acitve:border-black rounded-lg  md:text-lg"
+        id="bidamount"
+        type="number"
+        placeholder=""
+
+        
+        
+        >
+        
+      </div>
+
+      <div class="flex flex-row justify-center items-center gap-4">
+
+     <button onclick="closeDialog()" type="button" id="closeBid" class="border-gray-400  font-anta rounded-lg  px-6 py-2 border-[2px] border-black hover:border-black md:px-8">Close</button>
+
+      <button type="button" id="submitBid" class="border-gray-400  font-anta rounded-lg  px-6 py-2 border-[2px] border-black hover:border-black md:px-8">Submit</button>
+
+      
+
+    </div>
+      
+        </form>
+
+        
+
+    </div>
     
+
+
+
   <!------ delete button -->
 
   <div>

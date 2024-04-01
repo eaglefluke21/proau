@@ -32,17 +32,17 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="bg-slate-200 rounded-lg h-96 w-72 ">
 
           <div class="flex flex-row justify-between ">
-          <h2 class=" font-anta  text-xl p-2">Customer Name: ${item.name}</h2>
+          <h2 class=" font-anta  text-xl p-2">Customer Name: <span class="font-comic"> ${item.name} </span></h2>
           <button class="deleteBtn" data-item-id="${itemId}"> <img src="/svg/bin.svg" alt="" class="h-8 w-8 "></button>
           </div>
 
-          <p class="font-comic text-lg p-2"> Product Name:    ${item.productname}</p>
-          <p class="font-comic text-lg p-2">Mobile no:    ${item.mobileno}</p>
-          <p class="font-comic text-lg p-2">Pincode: ${item.pincode}</p>
-          <p class="font-comic text-lg p-2">Flat no: ${item.flat}</p>
-          <p class="font-comic text-lg p-2">Area: ${item.area}</p>
-          <p class="font-comic text-lg p-2">Town: ${item.town}</p>
-          <p class="font-comic text-lg p-2">State: ${item.state}</p>
+          <p class="font-anta text-lg p-2"> Product Name: <span class="font-comic">   ${item.productname} </span></p>
+          <p class="font-anta text-lg p-2">Mobile no:  <span class="font-comic">   ${item.mobileno}</span></p>
+          <p class="font-anta text-lg p-2">Pincode:  <span class="font-comic"> ${item.pincode}</span></p>
+          <p class="font-anta text-lg p-2">Flat no:  <span class="font-comic"> ${item.flat}</span></p>
+          <p class="font-anta text-lg p-2">Area:  <span class="font-comic"> ${item.area}</span></p>
+          <p class="font-anta text-lg p-2">Town:  <span class="font-comic"> ${item.town}</span></p>
+          <p class="font-anta text-lg p-2">State:  <span class="font-comic"> ${item.state}</span></p>
           
 
           </div>

@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    
 // Extract item Id from URL query parameters
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -65,7 +66,30 @@ BuyButton.addEventListener("click",function(){
 
 });
 
+
+
+
 });
+
+
+// open bid dialog 
+function showDialog(){
+
+    console.log('is it working?');
+    let showdialog = document.getElementById('dialog');
+    let formdialog = document.getElementById('formdialog');
+    showdialog.classList.remove('hidden');
+   
+      
+    
+}
+
+//close bid dialog
+function closeDialog(){
+    let closedialog = document.getElementById('dialog');
+    closedialog.classList.add('hidden');
+}
+
 
 
 document.getElementById("toggle").addEventListener("click", function () {
