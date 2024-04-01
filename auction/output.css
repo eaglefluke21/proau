@@ -730,6 +730,14 @@ video {
   height: 100vh;
 }
 
+.h-80 {
+  height: 20rem;
+}
+
+.h-60 {
+  height: 15rem;
+}
+
 .min-h-full {
   min-height: 100%;
 }
@@ -792,6 +800,10 @@ video {
 
 .w-64 {
   width: 16rem;
+}
+
+.w-52 {
+  width: 13rem;
 }
 
 .-translate-x-full {
