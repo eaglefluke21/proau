@@ -1,5 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    const token = localStorage.getItem('token');
+
+    if (token) {
+        // Token exists
+        console.log('Token exists:', token);
+        // You can perform further actions here, such as making authenticated requests
+    } else {
+        // Token does not exist
+        console.log('Token does not exist');
+        // You might redirect the user to the login page or perform other actions as needed
+    }
+
     
 // Extract item Id from URL query parameters
 const queryString = window.location.search;
@@ -8,7 +20,8 @@ const itemId = urlParams.get('itemId');
 console.log('item id:', itemId);
 
 // Fetch item details from backend using item ID
-const backendBaseUrl = '';
+let backendBaseUrl = '';
+
 fetch(`${backendBaseUrl}/admin/getItemDetails?itemId=${itemId}`)
 .then(response => {
     if(!response.ok){
@@ -66,6 +79,47 @@ BuyButton.addEventListener("click",function(){
 
 });
 
+//submit bid 
+
+const submitBid = document.getElementById("submitBidButton");
+
+
+submitBid.addEventListener("click",function() {
+    event.preventDefault();
+
+
+    const bidAmount = document.getElementById('bidamount').value;
+    const token = localStorage.getItem('token'); // Retrieve the token from local storage
+
+    if (!token) {
+        console.error('Authorization token not found');
+        return;
+    }
+
+    fetch(`${backendBaseUrl}/submitBid`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify({ bidAmount })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Bid submission failed');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Bid submitted successfully',data);
+        // Handle success response here if needed
+    })
+    .catch(error => {
+        console.error('Error submitting bid:', error.message);
+        // Handle error here if needed
+    });
+}) 
+
 
 
 
@@ -77,18 +131,25 @@ function showDialog(){
 
     console.log('is it working?');
     let showdialog = document.getElementById('dialog');
-    let formdialog = document.getElementById('formdialog');
-    showdialog.classList.remove('hidden');
-   
-      
+    showdialog.classList.remove("hidden");
+    showdialog.classList.add("flex");
     
-}
+};
 
 //close bid dialog
 function closeDialog(){
     let closedialog = document.getElementById('dialog');
     closedialog.classList.add('hidden');
 }
+
+
+
+
+
+
+
+
+
 
 
 

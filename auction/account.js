@@ -49,19 +49,26 @@ function signin() {
         body: JSON.stringify({ email, password })
     })
     .then(response => {
-        if (response.status === 200) {
-            // Redirect to index.html upon successful authentication
-            window.location.href = 'index.html'; 
+        if (response.ok) {
+            return response.json();
         } else if (response.status === 401) {
             document.getElementById('error-message').innerText = 'Incorrect email or password.';
+            throw new Error('Unauthorized');
         } else {
             throw new Error('Signin failed');
         }
+    })
+    .then(data => {
+        // Store the token in local storage
+        localStorage.setItem('token', data.token);
+        // Redirect to index.html upon successful authentication
+        window.location.href = 'index.html'; 
     })
     .catch(error => {
         console.error('Error:', error);
     });
 }
+
 
 
 

@@ -3,10 +3,12 @@ import mongoose, { Schema } from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { Item } from './dashbackend.js';
+import jwt from 'jsonwebtoken';
 
 const backendapp = express();
 const USER = process.env.MONGO_USER;
 const PASSWORD = process.env.MONGO_PASSWORD;
+const secretKey = 'abcxy';
 
 // MongoDb collection
 mongoose.connect(
@@ -56,7 +58,11 @@ backendapp.use(cors());
     try {
       const user = await User.findOne({ email, password });
       if (user) {
-        res.status(200).send();
+        const token = jwt.sign({emailId: user.email}, secretKey);
+        console.log('Token created succesfully:', token);
+
+
+        res.status(200).json({token});
       } else {
         res.status(401).json({ message: 'Invalid credentials' });
       }
@@ -65,9 +71,60 @@ backendapp.use(cors());
     }
   });
 
+  function authenticateToken(req,res, next){
+    const token = req.headers.authorization;
+    if(!token) {
+      return res.status(401).json({message: "Authorization token is required"});
+    }
+
+    jwt.verify(token, secretKey, (err, decoded) => {
+      if(err) {
+        return res.status(403).json({message: 'Invalid token'});
+      }
+      req.emailId = decoded.emailId;
+      next();
+    });
+
+
+  }
+
+
+
+
+  // defining bidamount schema
+
+  const bidSchema = new mongoose.Schema({
+    email: String,
+    bidAmount: Number
+  });
+
+  const Bid = mongoose.model('Bid',bidSchema);
+
+
+// route to add bid amount 
+  backendapp.post('/submitBid', authenticateToken, async (req, res) => {
+    const { bidAmount } = req.body;
+    const email = req.emailId;
+
+    try {
+        const user = await User.findById(email);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Save bid to the database
+        const newBid = new Bid({ email, bidAmount }); // Using user's email as userId
+        await newBid.save();
+        
+        res.status(201).json({ message: 'Bid submitted successfully' });
+    } catch (error) {
+        console.error('Error submitting bid:', error);
+        res.status(500).json({ error: 'Error submitting bid' });
+    }
+});
+
+
   // defining deliveryaddress schema/database
-
-
 
   const deliverySchema = new mongoose.Schema({
     name: String,
@@ -127,6 +184,10 @@ backendapp.use(cors());
             res.status(500).json({ error: "Failed to delete delivery address" });
           }
 });
+
+
+
+  // defining bid amount and user schema/database
 
   
 
