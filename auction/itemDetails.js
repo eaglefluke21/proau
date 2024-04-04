@@ -58,23 +58,32 @@ fetch(`${backendBaseUrl}/bidDetails?itemId=${itemId}`)
     return response.json();
 })
 .then(data => {
-    // filling html elements with details
+
     data.forEach(bidDetail => {
-        // Create HTML elements to display each bid detail
+
+
+        const wrapperDiv = document.createElement('div');
+        wrapperDiv.classList.add('flex', 'flex-row','p-2' );
+
+
+        
 
         const bidValueElement = document.createElement('div');
-        bidValueElement.innerHTML = `<div class="font-anta text-2xl"> $ <span class="font-anta"> ${bidDetail.bidAmount} </span> </div>`;
+        bidValueElement.innerHTML = `<div class="font-anta text-xl  ml-2 "> $ <span class="font-anta "> ${bidDetail.bidAmount} </span> </div>`;
 
 
         const bidMailElement = document.createElement('div');
-        bidMailElement.innerHTML = `<div class="font-anta mb-4"> <span class="text-xl"> By: </span> <span class="font-anta text-md"> ${bidDetail.email}</span> </div>`;
+        bidMailElement.innerHTML = `<div class="font-anta mb-4  text-xl">  <span class="font-anta text-md "> ${bidDetail.email}</span>: </div>`;
 
-       
+        wrapperDiv.appendChild(bidMailElement);
+        wrapperDiv.appendChild(bidValueElement);
+        
 
         // Append the elements to some container in your HTML
         const container = document.getElementById('bidDetailsContainer');
-        container.appendChild(bidMailElement);
-        container.appendChild(bidValueElement);
+        container.appendChild(wrapperDiv);
+        
+        
     });
 
 
