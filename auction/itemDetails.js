@@ -19,8 +19,10 @@ const urlParams = new URLSearchParams(queryString);
 const itemId = urlParams.get('itemId');
 console.log('item id:', itemId);
 
-// Fetch item details from backend using item ID
+
 let backendBaseUrl = '';
+
+// Fetch item details from backend using item ID
 
 fetch(`${backendBaseUrl}/admin/getItemDetails?itemId=${itemId}`)
 .then(response => {
@@ -45,7 +47,46 @@ fetch(`${backendBaseUrl}/admin/getItemDetails?itemId=${itemId}`)
 })
 .catch(error => console.error('Error fetching item details:', error ));
 
-//Delete item
+//.................................Fetching bid details.........................................
+
+
+fetch(`${backendBaseUrl}/bidDetails?itemId=${itemId}`)
+.then(response => {
+    if(!response.ok){
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+})
+.then(data => {
+    // filling html elements with details
+    data.forEach(bidDetail => {
+        // Create HTML elements to display each bid detail
+
+        const bidValueElement = document.createElement('div');
+        bidValueElement.innerHTML = `<div class="font-anta text-2xl"> $ <span class="font-anta"> ${bidDetail.bidAmount} </span> </div>`;
+
+
+        const bidMailElement = document.createElement('div');
+        bidMailElement.innerHTML = `<div class="font-anta mb-4"> <span class="text-xl"> By: </span> <span class="font-anta text-md"> ${bidDetail.email}</span> </div>`;
+
+       
+
+        // Append the elements to some container in your HTML
+        const container = document.getElementById('bidDetailsContainer');
+        container.appendChild(bidMailElement);
+        container.appendChild(bidValueElement);
+    });
+
+
+})
+.catch(error => console.error('Error fetching item details:', error ));
+
+
+
+
+
+
+// .............................Delete item............................................................
 function deleteItem(itemId){
     console.log("checking item id:", itemId );
     console.log("checking image URL:", itemImageURL.src );
@@ -102,7 +143,7 @@ submitBid.addEventListener("click",function() {
             'Content-Type': 'application/json',
             'Authorization': token
         },
-        body: JSON.stringify({ bidAmount })
+        body: JSON.stringify({ bidAmount , itemId })
     })
     .then(response => {
         if (!response.ok) {

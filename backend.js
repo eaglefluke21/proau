@@ -58,7 +58,7 @@ backendapp.use(cors());
     try {
       const user = await User.findOne({ email, password });
       if (user) {
-        const token = jwt.sign({emailId: user.email}, secretKey);
+        const token = jwt.sign({emailId: user.email , userId: user._id}, secretKey);
         console.log('Token created succesfully:', token);
 
 
@@ -82,6 +82,8 @@ backendapp.use(cors());
         return res.status(403).json({message: 'Invalid token'});
       }
       req.emailId = decoded.emailId;
+      req.userId = decoded.userId;
+
       next();
     });
 
@@ -94,6 +96,8 @@ backendapp.use(cors());
   // defining bidamount schema
 
   const bidSchema = new mongoose.Schema({
+    userid: String,
+    itemId:String,
     email: String,
     bidAmount: Number
   });
@@ -104,16 +108,18 @@ backendapp.use(cors());
 // route to add bid amount 
   backendapp.post('/submitBid', authenticateToken, async (req, res) => {
     const { bidAmount } = req.body;
+    const { itemId } = req.body;
     const email = req.emailId;
+    const userid = req.userId;
 
     try {
-        const user = await User.findById(email);
+        const user = await User.findOne({ email});
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
 
         // Save bid to the database
-        const newBid = new Bid({ email, bidAmount }); // Using user's email as userId
+        const newBid = new Bid({ email,userid, bidAmount ,itemId }); // Using user's email as userId
         await newBid.save();
         
         res.status(201).json({ message: 'Bid submitted successfully' });
@@ -121,6 +127,34 @@ backendapp.use(cors());
         console.error('Error submitting bid:', error);
         res.status(500).json({ error: 'Error submitting bid' });
     }
+});
+
+
+// route to fetch biddetails ( bidamount , email )
+
+backendapp.get('/bidDetails', async(req, res) => {
+  try {
+    // Fetching itemId from query parameters
+    const itemId = req.query.itemId;
+
+    console.log("check bid item id:", itemId);
+
+    // Fetching item details from database based on itemId
+    const biddetails = await Bid.find({itemId}).select(' bidAmount email');
+
+    console.log('checking biddetails', biddetails);
+
+    if (!biddetails) {
+      return res.status(404).json({ error: "Item not found"});
+
+    }
+
+    res.status(200).json(biddetails);
+
+  } catch(error){
+    console.error('Error fetching item Details:', error);
+    res.status(500).json({error:"Failed to fetch item details"});
+  }
 });
 
 
