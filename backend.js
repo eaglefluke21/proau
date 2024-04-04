@@ -140,11 +140,11 @@ backendapp.get('/bidDetails', async(req, res) => {
     console.log("check bid item id:", itemId);
 
     // Fetching item details from database based on itemId
-    const biddetails = await Bid.find({itemId}).select(' bidAmount email');
+    const biddetails = await Bid.find({itemId}).select(' bidAmount email').sort({ bidAmount:1});
 
     console.log('checking biddetails', biddetails);
 
-    if (!biddetails) {
+    if (!biddetails || biddetails.length === 0) {
       return res.status(404).json({ error: "Item not found"});
 
     }
