@@ -89,7 +89,7 @@ fetch(`${backendBaseUrl}/bidDetails?itemId=${itemId}`)
         
 
         const bidValueElement = document.createElement('div');
-        bidValueElement.innerHTML = `<div class="font-anta text-xl  ml-2 "> $ <span class="font-anta "> ${bidDetail.bidAmount} </span> </div>`;
+        bidValueElement.innerHTML = `<div class="font-anta text-xl "> $ <span class="font-anta "> ${bidDetail.bidAmount} </span> </div>`;
 
 
         const bidMailElement = document.createElement('div');
