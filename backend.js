@@ -132,11 +132,12 @@ backendapp.use(cors());
 
 // route to fetch biddetails ( bidamount , email )
 
-backendapp.get('/bidDetails', async(req, res) => {
+backendapp.get('/bidDetails',async(req, res) => {
   try {
+
+
     // Fetching itemId from query parameters
     const itemId = req.query.itemId;
-
     console.log("check bid item id:", itemId);
 
     // Fetching item details from database based on itemId

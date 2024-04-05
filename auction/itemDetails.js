@@ -2,6 +2,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const token = localStorage.getItem('token');
 
+    const tokenParts = token.split('.');
+
+    // Get the payload part (index 1) and decode it
+    const decodedPayload = JSON.parse(atob(tokenParts[1]));
+
+    // Extract the email from the decoded payload
+    const userEmail = decodedPayload.emailId;
+
+    // Now you have the user's email extracted from the token
+    console.log(userEmail);
+
     if (token) {
         // Token exists
         console.log('Token exists:', token);
@@ -11,8 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Token does not exist');
         // You might redirect the user to the login page or perform other actions as needed
     }
-
-    
+       
 // Extract item Id from URL query parameters
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -48,7 +58,8 @@ fetch(`${backendBaseUrl}/admin/getItemDetails?itemId=${itemId}`)
 .catch(error => console.error('Error fetching item details:', error ));
 
 //.................................Fetching bid details.........................................
-
+let highestBidAmount = null;
+let highestBidEmail = null;
 
 fetch(`${backendBaseUrl}/bidDetails?itemId=${itemId}`)
 .then(response => {
@@ -58,10 +69,19 @@ fetch(`${backendBaseUrl}/bidDetails?itemId=${itemId}`)
     return response.json();
 })
 .then(data => {
+  
 
+        // Sort bid details by bid amount in descending order
+         data.sort((a, b) => b.bidAmount - a.bidAmount);
+
+         // Take the first bid detail as the highest bid
+    const highestBid = data[0];
+
+    // Set highest bid amount and email
+    highestBidAmount = highestBid ? highestBid.bidAmount : null;
+    highestBidEmail = highestBid ? highestBid.email : null;
+       
     data.forEach(bidDetail => {
-
-
         const wrapperDiv = document.createElement('div');
         wrapperDiv.classList.add('flex', 'flex-row','p-2' );
 
@@ -120,13 +140,19 @@ function deleteItem(itemId){
     .catch(error => console.error('Error deleting item:', error));
 }
 
-//buy item
+//.....................................buy item........................................................
+
 const BuyButton = document.getElementById("buybutton");
 
 BuyButton.addEventListener("click",function(){
 
-    window.location.href=`checkout.html?itemId=${itemId}`;
+    if (userEmail === highestBidEmail) {
 
+        window.location.href = `checkout.html?itemId=${itemId}&email=${highestBidEmail}`;
+} else {
+    // Display a message indicating that only the highest bidder can proceed to checkout
+    alert("Only the highest bidder can proceed to checkout.");
+}   
 });
 
 //submit bid 
@@ -163,6 +189,8 @@ submitBid.addEventListener("click",function() {
     .then(data => {
         console.log('Bid submitted successfully',data);
         // Handle success response here if needed
+        closeSubmit();
+
     })
     .catch(error => {
         console.error('Error submitting bid:', error.message);
@@ -190,6 +218,12 @@ function showDialog(){
 function closeDialog(){
     let closedialog = document.getElementById('dialog');
     closedialog.classList.add('hidden');
+}
+
+//close after submit
+function closeSubmit(){
+    let closesubmit = document.getElementById('dialog');
+    closesubmit.classList.add('hidden');
 }
 
 
