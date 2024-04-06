@@ -49,6 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     
       `;
 
+
+
       // Add event listener to delete button
       const deleteButton = div.querySelector('.deleteBtn');
             deleteButton.addEventListener('click', () => {
@@ -60,6 +62,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       })
       .catch(error => console.error('Error fetching item data:', error));
+
+
+
+            ///////////////////////////////  alert message //////////////////////////////////////////////////////////
+const messageBox = document.getElementById("messageBox");
+const messageText = document.getElementById("messageText");
+const alertText = document.getElementById("alertmessageText");
+const messageContent = document.getElementById("messageContent");
+
+
+function displayMessageBox(message,colorClass,removeExisting = false){
+    alertText.classList.remove('hidden');
+    messageText.textContent = message;
+
+    if(removeExisting){
+
+        messageContent.className = `p-4 mb-4 text-sm rounded-lg ${colorClass}`;    }
+
+    messageBox.style.display = "block";
+
+    setTimeout(function() {
+        messageBox.style.display = "none";
+    }, 2000); 
+}
+
 
       // Function to delete item by ID
   function deleteItem(itemId) {
@@ -74,6 +101,8 @@ document.addEventListener('DOMContentLoaded', function() {
       if (response.ok) {
         console.log('Item deleted successfully');
         // Optionally, remove the deleted item from the UI
+        displayMessageBox("Address Deleted successfully.", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
+
       } else {
         console.error('Failed to delete item');
       }

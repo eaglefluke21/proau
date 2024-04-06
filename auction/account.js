@@ -6,6 +6,28 @@ document.addEventListener('DOMContentLoaded', function() {
     signinBtn.addEventListener('click', signin);
 });
 
+///////////////////////////////  alert message //////////////////////////////////////////////////////////
+const messageBox = document.getElementById("messageBox");
+const messageText = document.getElementById("messageText");
+const alertText = document.getElementById("alertmessageText");
+const messageContent = document.getElementById("messageContent");
+
+
+function displayMessageBox(message,colorClass,removeExisting = false){
+    alertText.classList.remove('hidden');
+    messageText.textContent = message;
+
+    if(removeExisting){
+
+        messageContent.className = `p-4 mb-4 text-sm rounded-lg ${colorClass}`;    }
+
+    messageBox.style.display = "block";
+
+    setTimeout(function() {
+        messageBox.style.display = "none";
+    }, 2000); 
+}
+
  // Assuming backend is hosted locally on port 3000
  const backendBaseUrl = '';
 
@@ -31,9 +53,13 @@ function signup() {
     })
     .then(data => {
         console.log(data);
+        displayMessageBox("Sign Up Successful", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
+
+
     })
     .catch(error => {
         console.error('Error:', error);
+        displayMessageBox("Invalid Email or Password.");
     });
 }
 
@@ -51,8 +77,9 @@ function signin() {
     .then(response => {
         if (response.ok) {
             return response.json();
+
         } else if (response.status === 401) {
-            document.getElementById('error-message').innerText = 'Incorrect email or password.';
+            displayMessageBox("Incorrect Email or Password.");
             throw new Error('Unauthorized');
         } else {
             throw new Error('Signin failed');
@@ -62,6 +89,8 @@ function signin() {
         // Store the token in local storage
         localStorage.setItem('token', data.token);
         // Redirect to index.html upon successful authentication
+        displayMessageBox("Sign in Successful", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
+
         window.location.href = 'index.html'; 
     })
     .catch(error => {

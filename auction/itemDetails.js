@@ -115,7 +115,7 @@ fetch(`${backendBaseUrl}/bidDetails?itemId=${itemId}`)
 
 
 
-// .............................Delete item............................................................
+///////////////////////////////////////////// Delete item ///////////////////////////////
 function deleteItem(itemId){
     console.log("checking item id:", itemId );
     console.log("checking image URL:", itemImageURL.src );
@@ -135,12 +135,42 @@ function deleteItem(itemId){
     .then(data => {
         // Handle success
         console.log(data.message); // Log success message
+
         // Redirect or display success message to the user
+        displayMessageBox("Item removed successfully.", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
+
     })
     .catch(error => console.error('Error deleting item:', error));
 }
 
-//.....................................buy item........................................................
+///////////////////////////////  alert message //////////////////////////////////////////////////////////
+const messageBox = document.getElementById("messageBox");
+const messageText = document.getElementById("messageText");
+const alertText = document.getElementById("alertmessageText");
+const messageContent = document.getElementById("messageContent");
+
+
+function displayMessageBox(message,colorClass,removeExisting = false){
+    alertText.classList.remove('hidden');
+    messageText.textContent = message;
+
+    if(removeExisting){
+
+        messageContent.className = `p-4 mb-4 text-sm rounded-lg ${colorClass}`;    }
+
+    messageBox.style.display = "block";
+
+    setTimeout(function() {
+        messageBox.style.display = "none";
+    }, 2000); 
+}
+
+
+
+/////////////////////////////////////////// buy item ///////////////////////////////////////////////////////
+
+
+
 
 const BuyButton = document.getElementById("buybutton");
 
@@ -150,12 +180,15 @@ BuyButton.addEventListener("click",function(){
 
         window.location.href = `checkout.html?itemId=${itemId}&email=${highestBidEmail}`;
 } else {
-    // Display a message indicating that only the highest bidder can proceed to checkout
-    alert("Only the highest bidder can proceed to checkout.");
+   
+    displayMessageBox("Only the highest bidder can proceed to checkout.");
+
 }   
 });
 
-//submit bid 
+
+
+///////////////////////////////////////////// submit bid ///////////////////////////////////////////////////
 
 const submitBid = document.getElementById("submitBidButton");
 
@@ -190,6 +223,7 @@ submitBid.addEventListener("click",function() {
         console.log('Bid submitted successfully',data);
         // Handle success response here if needed
         closeSubmit();
+        displayMessageBox("Bid Submitted successfully.", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
 
     })
     .catch(error => {
@@ -218,6 +252,7 @@ function showDialog(){
 function closeDialog(){
     let closedialog = document.getElementById('dialog');
     closedialog.classList.add('hidden');
+    
 }
 
 //close after submit
