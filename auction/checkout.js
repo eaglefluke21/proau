@@ -57,10 +57,33 @@ function addAddress() {
 
     
 
+    ///////////////////////////////  alert message //////////////////////////////////////////////////////////
+const messageBox = document.getElementById("messageBox");
+const messageText = document.getElementById("messageText");
+const alertText = document.getElementById("alertmessageText");
+const messageContent = document.getElementById("messageContent");
 
 
+function displayMessageBox(message,colorClass,removeExisting = false){
+    alertText.classList.remove('hidden');
+    messageText.textContent = message;
 
-   
+    if(removeExisting){
+
+        messageContent.className = `p-4 mb-4 text-sm rounded-lg ${colorClass}`;    }
+
+    messageBox.style.display = "block";
+
+    setTimeout(function() {
+        messageBox.style.display = "none";
+    }, 2000); 
+}
+    
+
+    const isValid = name && mobileno && pincode && flat && area && town && state && productname;
+
+
+  
 
     fetch(`${backendBaseUrl}/useaddress`, { // Corrected endpoint URL
         method: 'POST',
@@ -81,6 +104,15 @@ function addAddress() {
     .catch(error => {
         console.error('Error:', error);
     });
+
+    if (isValid) {
+        displayMessageBox("Item added Successfuly", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
+
+    } else {
+        console.error('One or more fields are empty');
+        displayMessageBox("Please fill in all required fields.");
+    }
+    
 }
 
 
