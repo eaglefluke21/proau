@@ -16,6 +16,7 @@ const messageContent = document.getElementById("messageContent");
 
 function displayMessageBox(message,colorClass,removeExisting = false){
     alertText.classList.remove('hidden');
+    messageBox.classList.remove('flex');
     messageText.textContent = message;
 
     if(removeExisting){

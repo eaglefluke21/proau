@@ -105,13 +105,13 @@
     <!--- Heading-->
 
   <div class=" p-8 mt-24 text-center  "> <!--bg-black-->
-    <p class="  font-bold font-anta text-black  text-3xl ">
-      Sign In / Create Account
+    <p class="  font-anta text-black text-xl md:text-3xl ">
+      Join Now / Access Your Account
     </p>
   </div>
 
   <!----------------- Alert Message ----------------->
-  <div id="messageBox" class=" fixed top-0 left-0 right-0 text-center  z-50 flex justify-center hidden">
+  <div id="messageBox" class=" fixed top-0 left-0 right-0 text-center  z-50  justify-center hidden">
 
     <div id="messageContent" class="p-4 mb-4 text-sm  rounded-lg bg-red-50 text-red-800 dark:bg-gray-800 dark:text-red-400 " role="alert">
       <span class="font-medium hidden" id="alertmessageText">Alert!</span> <span id="messageText"></span>
@@ -126,14 +126,14 @@
 
 
 
-      <form class="flex flex-col items-center gap-6 p-4 w-96  bg-slate-400 shadow-xl shadow-gray-200 rounded-lg sm:w-96 lg:w-[40rem] " id="authentication">
+      <form class="flex flex-col items-center gap-6 p-4 w-96   rounded-lg sm:w-96 lg:w-[40rem] " id="authentication">
 
         <!---Email-->
         <div>
           <label for="email">
-            <p class="font-bold font-anta text-white text-lg md:text-2xl " > Email </p>
+            <p class=" font-comic text-black text-md md:text-lg " > Email address </p>
             <input
-              class="w-80  p-2 font-bold font-anta text-xs shadow-lg border-solid border-2 border-white rounded-lg md:text-lg"
+              class=" w-80 p-2 font-anta text-xs border-solid border-2 rounded-lg md:text-lg md:w-[37rem] "
               id="email"
               type="text"
               placeholder=""
@@ -146,9 +146,9 @@
         <div>
           <label for="pass">
             
-            <p class="font-bold font-anta text-white text-lg md:text-2xl "> Password</p>
+            <p class="font-comic text-black text-md md:text-lg "> Password</p>
             <input
-              class="w-80  p-2 font-bold font-anta text-xs shadow-lg border-solid border-2 border-white rounded-lg md:text-lg"
+              class="w-80 p-2 font-anta text-xs  border-solid border-2  rounded-lg md:text-lg md:w-[37rem]"
               id="pass"
               type="text"
               placeholder=""
@@ -159,14 +159,20 @@
 
         <!----Buttons-->
        
-        <div>
-          <button type="button" id="signinBtn" class="bg-gray-300 font-anta  rounded-lg  px-6 py-2   hover:bg-gray-500 hover:text-white md:px-14">SIGN IN</button>
-        </div>
-
-
-        <div>
-        <button type="button" id="signupBtn" class="bg-gray-300 font-anta rounded-lg  px-6 py-2   hover:bg-gray-500 hover:text-white md:px-14">SIGN UP</button>
+        <div>  
+        <button type="button" id="signupBtn" class="bg-rose-300 font-anta rounded-lg  w-80 py-2 md:w-[37rem]  hover:bg-rose-500 hover:text-white ">SIGN UP</button>
       </div>
+
+      <div class="flex items-center justify-center w-full my-4">
+        <hr class="border-t-2 border-black w-1/4 mr-4">
+        <p class="text-black  font-anta text-md">Continue With</p>
+        <hr class="border-t-2 border-black w-1/4 ml-4">
+      </div>
+
+      <div>
+        <button type="button" id="signinBtn" class="bg-teal-300 font-anta  rounded-lg  w-80 py-2 md:w-[37rem]  hover:bg-teal-500 hover:text-white ">SIGN IN</button>
+      </div>
+
       
       
     <div id="error-message" class="font-comic text-md text-white"></div>
