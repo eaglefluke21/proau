@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
           // Set the inner HTML of the div with item details
           div.innerHTML = `
           
-          <div class="bg-slate-200 rounded-lg h-96 w-72 ">
+          <div class="bg-white rounded-lg h-96 w-72 ">
 
           <div class="flex flex-row justify-between ">
           <h2 class=" font-anta  text-xl p-2">Customer Name: <span class="font-comic"> ${item.name} </span></h2>
@@ -74,6 +74,7 @@ const messageContent = document.getElementById("messageContent");
 
 function displayMessageBox(message,colorClass,removeExisting = false){
     alertText.classList.remove('hidden');
+    messageBox.classList.add('flex');
     messageText.textContent = message;
 
     if(removeExisting){
