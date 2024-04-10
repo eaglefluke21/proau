@@ -25,6 +25,45 @@ backendapp.use(bodyParser.urlencoded({ extended: true }));
 backendapp.use(bodyParser.json());
 backendapp.use(cors());
 
+// defining cart schema 
+const cartSchema = new mongoose.Schema({
+  userEmail: String,
+  itemId: String
+});
+
+const Cart = mongoose.model('Cart',cartSchema);
+
+
+// routes for adding cart items 
+
+backendapp.post('/cart',async(req,res)=>{
+
+    const {userEmail , itemId} = req.body;
+
+    if (!userEmail || !itemId) {
+      return res.status(400).json({ message: "Both userEmail and itemId are required." });
+  }
+
+      try{
+        const cart = await Cart.create({userEmail, itemId});
+        res.status(201).json({ message:"Added to cart sucessfully", userEmail});
+
+      }
+      catch(error){
+
+        res.status(400).json({message:"Unable to add cart Item",error});
+
+      }
+
+
+
+})
+
+
+
+
+
+
   // defining user schema/database
 
   const userSchema = new mongoose.Schema({
@@ -41,6 +80,10 @@ backendapp.use(cors());
 
   backendapp.post('/signup', async (req, res) => {
     const { email, password } = req.body;
+
+    if(!email || !password){
+      return res.status(400).json({message:"both email and password are required"});
+    }
     
     try {
       const user = await User.create({ email, password });
@@ -220,9 +263,6 @@ backendapp.get('/bidDetails',async(req, res) => {
           }
 });
 
-
-
-  // defining bid amount and user schema/database
 
   
 

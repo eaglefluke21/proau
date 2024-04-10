@@ -27,7 +27,7 @@
     <!--- toggle -->
 
 
-    <div class="absolute top-0 left-10 z-20">
+    <div class="absolute top-0 left-10 z-20 ">
       <img
         src="/svg/auction.svg "
         class="h-24 w-14  "
@@ -65,9 +65,9 @@
             </a>
 
             <a href="/cart.html">
-              <li class="hover:bg-gray-300 rounded-lg ml-4">Cart</li>
-          </a>
-            
+            <li class="hover:bg-gray-300 rounded-lg ml-4">Cart</li>
+        </a>
+
           </ul>
         </li>
 
@@ -106,97 +106,28 @@
 
     <!--- Main content-->
 
-     <!--- Heading-->
+    <!--- Heading-->
 
-  <div class=" p-8 mt-24 text-center  "> <!--bg-black-->
-    <p class="   font-anta text-black text-xl md:text-3xl ">
-      DASHBOARD
-    </p>
-  </div>
+   
 
-  <!----------------- Alert Message ----------------->
-  <div id="messageBox" class=" fixed top-0 left-0 right-0 text-center  z-50  justify-center hidden">
-
-    <div id="messageContent" class="p-4 mb-4 text-sm  rounded-lg bg-red-50 text-red-800 dark:bg-gray-800 dark:text-red-400 " role="alert">
-      <span class="font-medium hidden" id="alertmessageText">Alert!</span> <span id="messageText"></span>
+        <div class="  p-8  mt-24 text-center ">
+      <p class="font-bold font-anta text-black text-3xl  md:text-5xl">
+        YOUR ITEMS
+      </p>
     </div>
 
-  </div>
 
+   
+      <div class="bg-gradient-to-b from-white  to-slate-100">
+        
+        <!-- Container for displaying images -->
+        <div id="cartContainer" class=" flex flex-col  gap-4 p-2 pb-8 items-center justify-center rounded-lg  sm:grid sm:grid-rows-2 sm:max-lg:grid-flow-col  lg:grid lg:grid-cols-4 lg:gap-8 lg:p-12"></div>
+    </div>
 
+    
+ 
 
-        <!---dashboard form-->
-
-    <div class="flex flex-col items-center">
-
-
-        <!-- Form for adding a new item -->
-       
-    <div >
-        <form class=" flex flex-col w-96 items-center gap-6   rounded-lg px-4 py-24 md:px-40 md:py-20 sm:w-96 lg:w-[40rem]" id="addItemForm" enctype="multipart/form-data">
-          <div>
-            <label for="itemName">
-              <p class="font-comic  text-black text-md md:text-lg" > Item Name </p>
-              <input
-                class="w-80 p-2  font-anta text-xs  border-solid border-2 rounded-lg md:text-lg md:w-[37rem]"
-                id="itemName"
-                type="text"
-                placeholder=""
-              />
-            </label>
-          </div>
-  
-         
-
-          <div>
-            <label for="itemDescription">
-              
-              <p class="font-comic text-black text-md md:text-lg "> Description</p>
-              <input
-                class="w-80 p-2  font-anta text-xs  border-solid border-2 rounded-lg md:text-lg md:w-[37rem]"
-                id="itemDescription"
-                type="text"
-                placeholder=""
-              />
-            </label>
-          </div>
-
-
-          <div>
-            <label for="itemImage" >
-              
-              <p class=" cursor-pointer w-80 p-2 bg-rose-300 font-anta text-black text-md text-center   border-solid border-2 border-rose-300 rounded-lg md:text-lg md:w-[37rem]  hover:bg-rose-500 hover:text-white "> Add Image</p>
-              
-              <input
-                class="hidden"
-                id="itemImage"
-                type="file"
-                placeholder=""
-              />
-              
-            </label>
-          </div>
-
-
-          <div class="flex items-center justify-center w-full my-4">
-            <hr class="border-t-2 border-black w-1/4 mr-4">
-            <p class="text-black  font-anta text-md">Add Your Item</p>
-            <hr class="border-t-2 border-black w-1/4 ml-4">
-          </div>
-
-
-          <div>
-          <button type="button" id="addItem" class="bg-teal-300 font-anta  rounded-lg  w-80 py-2 md:w-[37rem]  hover:bg-teal-500 hover:text-white">ADD ITEM</button>
-            </div>
-  
-        </form>
-      </div>
-
-        </div>
-
-
-
-     <!----footer -->
+  <!----footer -->
   <div class="mt-auto flex flex-col md:flex-row md:justify-between items-center text-md md:text-lg text-black">
     <p class="order-2 md:order-1 mt-8 md:mt-0"> &copy; Auction Nest, 2024. </p>
     <div class="order-1 md:order-2">
@@ -209,7 +140,10 @@
 
 
 
+        
+
+
     
   </body>
-  <script   src="/admin.js">  </script>
+  <script   src="/cart.js">  </script>
 </html>
