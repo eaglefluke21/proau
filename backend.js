@@ -46,7 +46,7 @@ backendapp.post('/cart',async(req,res)=>{
 
       try{
         const cart = await Cart.create({userEmail, itemId});
-        res.status(201).json({ message:"Added to cart sucessfully", userEmail});
+        res.status(201).json({ message:"Added to cart sucessfully", cart});
 
       }
       catch(error){
@@ -58,6 +58,26 @@ backendapp.post('/cart',async(req,res)=>{
 
 
 })
+
+//routes for fetching add cart item id 
+backendapp.get('/cartitems',async(req,res) => {
+
+  const userEmail = req.query.userEmail;
+
+  if(!userEmail){
+    return res.status(400).json({message: "userEmail is required"});
+  }
+
+  try {
+    const cartItems = await Cart.find({userEmail: userEmail }, 'itemId');
+    res.status(200).json({ cartItems});
+  } catch (error) {
+    res.status(400).json({message: "Unable to fetch cart items"})
+  }
+
+
+
+});
 
 
 
