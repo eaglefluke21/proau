@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Create a div to hold each item details
         const div = document.createElement('div');
-        div.classList.add('item'); 
+         
 
         // Append the div to the container
         container.appendChild(div);

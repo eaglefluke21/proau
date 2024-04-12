@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
           // Set the inner HTML of the div with item details
           div.innerHTML = `
           
-          <div class="bg-white rounded-lg h-96 w-72 ">
+          <div class="bg-slate-100 rounded-lg h-96 w-72 ">
 
           <div class="flex flex-row justify-between ">
           <h2 class=" font-anta  text-xl p-2">Customer Name: <span class="font-comic"> ${item.name} </span></h2>

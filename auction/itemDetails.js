@@ -194,10 +194,13 @@ CartButton.addEventListener("click", function(){
     })
     .then(data => {
         console.log('Cart Added successfully',data);
+        displayMessageBox("Added to cart  successfully.", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
 
     })
     .catch(error =>{
         console.error('Error adding to cart:',error);
+
+        displayMessageBox("Unable to add to cart");
 
     });
 

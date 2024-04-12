@@ -81,6 +81,31 @@ backendapp.get('/cartitems',async(req,res) => {
 
 
 
+ // Route for  deleting cart item
+ backendapp.delete('/cartitems/delete', async(req,res) =>{
+
+  const itemId = req.body.itemId;
+
+  const userEmail = req.body.userEmail;
+
+  console.log("look for :", itemId);
+
+  try {
+    const cartitem = await Cart.findOneAndDelete({ userEmail: userEmail, itemId: itemId  });;
+    if (!cartitem) {
+      return res.status(404).json({ message: "cart item not found" });
+    }
+    res.status(200).json({ message:" cart item deleted successfully" });
+  } catch (error) {
+    console.error('Error deleting cart item:', error);
+    res.status(500).json({ error: "Failed to delete cart item" });
+  }
+});
+
+
+
+
+
 
 
 
