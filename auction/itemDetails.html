@@ -24,9 +24,8 @@
 
   </head>
   <body class="bg-white flex flex-col min-h-screen">
+
     <!--- toggle -->
-
-
     <div class="absolute top-0 left-10 z-20">
       <img
         src="/svg/auction.svg "
@@ -34,6 +33,13 @@
         id="toggle"
       />
     </div>
+
+
+     <!-----Logout-->
+  <div class="absolute right-0 mr-10 top-7 z-20">
+    <button class="font-anta text-lg text-white border-2 px-4 py-2 border-solid border-black bg-black rounded-xl active:bg-white active:text-black" id="logoutbtn"> Logout </button>
+
+  </div>
 
     <!--- navigation bar -->
 
@@ -131,6 +137,33 @@
       />
     </div>
 
+    <!---------------------------------  Timer  ------------------------------------------------>
+
+    <div class="p-6 bg-white rounded shadow-lg flex flex-col items-center w-96 hidden" id="timerbox">
+      <h1 class="text-2xl mb-4">Simple Timer</h1>
+      
+      <div class="flex  space-x-4 mb-4"> 
+          <div class="flex flex-col items-center">
+              <label for="days" class="mb-2">Days</label>
+              <input id="days" type="number" class=" p-2 rounded w-32 border-black border-solid border-2" min="0">
+          </div>
+          <div class="flex flex-col items-center">
+              <label for="hours" class="mb-2">Hours</label>
+              <input id="hours" type="number" class=" p-2 rounded w-20 border-black border-solid border-2" min="0" max="23">
+          </div>
+          <div class="flex flex-col items-center">
+              <label for="minutes" class="mb-2">Minutes</label>
+              <input id="minutes" type="number" class=" p-2 rounded w-20 border-black border-solid border-2" min="0" max="59">
+          </div>
+      </div>
+
+      <button id="startTimer" class="bg-black text-white px-4 py-2 rounded">Start Timer</button>
+
+      
+  </div>
+
+  <div id="timer" class="mt-4 text-2xl"></div>
+
     <!----------------- Alert Message ----------------->
     <div id="messageBox" class=" fixed top-0 left-0 right-0 text-center  z-50  justify-center hidden">
 
@@ -155,7 +188,7 @@
 
     <!-----Bidbutton-->
     <div>
-      <button onclick="showDialog()" class="bg-rose-300 font-anta rounded-lg  w-64 py-2  hover:bg-rose-500 hover:text-white md:w-80" id="BidButton"> Bid </button>
+      <button  class="bg-rose-300 font-anta rounded-lg  w-64 py-2  hover:bg-rose-500 hover:text-white md:w-80" id="BidButton"> Bid </button>
     </div>
 
 
@@ -187,8 +220,11 @@
 
       <div class="flex flex-row justify-center items-center gap-4">
 
-     <button onclick="closeDialog()" type="button" id="closeBid" class="border-gray-400  font-anta rounded-lg  px-6 py-2 border-[2px]  hover:border-black md:px-8">Close</button>
+        <!----- close bid button-->
 
+     <button  type="button" id="closeBid" class="border-gray-400  font-anta rounded-lg  px-6 py-2 border-[2px]  hover:border-black md:px-8">Close</button>
+
+     <!------ submit bid button -->
       <button  id="submitBidButton" class="border-gray-400  font-anta rounded-lg  px-6 py-2 border-[2px] hover:border-black md:px-8">Submit</button>
 
       

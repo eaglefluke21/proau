@@ -1,4 +1,79 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+
+  ///////////////////////////////  alert message //////////////////////////////////////////////////////////
+  const messageBox = document.getElementById("messageBox");
+  const messageText = document.getElementById("messageText");
+  const alertText = document.getElementById("alertmessageText");
+  const messageContent = document.getElementById("messageContent");
+  
+  
+  function displayMessageBox(message,colorClass,removeExisting = false){
+      alertText.classList.remove('hidden');
+      messageBox.classList.add('flex');
+      messageText.textContent = message;
+  
+      if(removeExisting){
+  
+          messageContent.className = `p-4 mb-4 text-sm rounded-lg ${colorClass}`;    }
+  
+      messageBox.style.display = "block";
+  
+      setTimeout(function() {
+          messageBox.style.display = "none";
+      }, 2000); 
+  }
+
+
+
+
+
+
+  const token = localStorage.getItem('token');
+
+  if (token) {
+      
+    console.log('Token exists:', token);
+    displayMessageBox("Welcome to Auction Nest.", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
+
+} else {
+    
+    console.log('Token does not exist');
+
+    displayMessageBox("Please Sign In to get full access.");
+
+
+}
+
+  const tokenParts = token.split('.');
+
+  const decodedPayload = JSON.parse(atob(tokenParts[1]));
+
+  const userEmail = decodedPayload.emailId;
+
+  console.log(userEmail);
+
+
+
+  const logout = document.getElementById('logoutbtn');
+
+  logout.addEventListener('click', () =>{
+
+   const token = localStorage.removeItem('token');
+
+   if (token == null) {
+
+    console.log('Token removed. User Logged out',token);
+
+    window.location.href=`account.html`;
+
+   }
+
+   
+
+  })
+
+
   const backendBaseUrl = '';
 
   // Fetching the item data

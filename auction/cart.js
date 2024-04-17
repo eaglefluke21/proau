@@ -19,7 +19,30 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         
         console.log('Token does not exist');
+        
     }
+
+    
+  const logout = document.getElementById('logoutbtn');
+
+  logout.addEventListener('click', () =>{
+
+   const token = localStorage.removeItem('token');
+
+   if (token == null) {
+
+    console.log('Token removed. User Logged out',token);
+
+    window.location.href=`account.html`;
+
+   }
+
+   
+
+  })
+
+
+
 
     ///////////////////////////////  alert message //////////////////////////////////////////////////////////
 const messageBox = document.getElementById("messageBox");

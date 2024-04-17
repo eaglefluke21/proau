@@ -1,10 +1,55 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Your code here
+
+    const token = localStorage.getItem('token');
+
+    const tokenParts = token.split('.');
+  
+    const decodedPayload = JSON.parse(atob(tokenParts[1]));
+  
+    const userEmail = decodedPayload.emailId;
+  
+    console.log(userEmail);
+  
+    if (token) {
+        
+        console.log('Token exists:', token);
+  
+    } else {
+        
+        console.log('Token does not exist');
+    }
+       
+  
+    const logout = document.getElementById('logoutbtn');
+  
+    logout.addEventListener('click', () =>{
+  
+     const token = localStorage.removeItem('token');
+  
+     if (token == null) {
+  
+      console.log('Token removed. User Logged out',token);
+  
+      window.location.href=`account.html`;
+  
+     }
+  
+     
+  
+    })
+  
+
+
+
+
+
+   
     const addItem = document.getElementById('addItem');
     if (addItem) {
         addItem.addEventListener('click', additem);
     }
 });
+
 
 
 ///////////////////////////////  alert message //////////////////////////////////////////////////////////

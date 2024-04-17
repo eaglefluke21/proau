@@ -18,7 +18,156 @@ document.addEventListener('DOMContentLoaded', function() {
         
         console.log('Token does not exist');
     }
-       
+
+    // Logout user
+  const logout = document.getElementById('logoutbtn');
+
+  logout.addEventListener('click', () =>{
+
+   const token = localStorage.removeItem('token');
+
+   if (token == null) {
+
+    console.log('Token removed. User Logged out',token);
+
+    window.location.href=`account.html`;
+
+   }
+
+   
+
+  })
+
+  
+///////////////////////////////  alert message //////////////////////////////////////////////////////////
+const messageBox = document.getElementById("messageBox");
+const messageText = document.getElementById("messageText");
+const alertText = document.getElementById("alertmessageText");
+const messageContent = document.getElementById("messageContent");
+
+
+function displayMessageBox(message,colorClass,removeExisting = false){
+    alertText.classList.remove('hidden');
+    messageBox.classList.add('flex');
+    messageText.textContent = message;
+
+    if(removeExisting){
+
+        messageContent.className = `p-4 mb-4 text-sm rounded-lg ${colorClass}`;    }
+
+    messageBox.style.display = "block";
+
+    setTimeout(function() {
+        messageBox.style.display = "none";
+    }, 2000); 
+}
+
+
+  const TimerBox = document.getElementById('timerbox');
+  const startTimerBtn = document.getElementById('startTimer');
+  const daysInput = document.getElementById('days');
+  const hoursInput = document.getElementById('hours');
+  const minutesInput = document.getElementById('minutes');
+  const timerDisplay = document.getElementById('timer');
+  
+  
+  let intervalId;
+  let expiryTimestamp;
+  
+  // Function to update the timer display
+  function updateTimerDisplay() {
+      const now = new Date().getTime();
+      const distance = expiryTimestamp - now;
+  
+      if (distance <= 0) {
+        TimerBox.classList.remove('hidden');
+
+          clearInterval(intervalId);
+          timerDisplay.textContent = 'Timer Expired!';
+          
+          showDialog.disabled = true; // Disable showDialog button when timer expires
+          return;
+      }
+  
+      const remainingDays = Math.floor(distance / (24 * 60 * 60 * 1000));
+      const remainingHours = Math.floor((distance % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+      const remainingMinutes = Math.floor((distance % (60 * 60 * 1000)) / (60 * 1000));
+      const remainingSeconds = Math.floor((distance % (60 * 1000)) / 1000);
+  
+      timerDisplay.textContent = `${remainingDays}d ${remainingHours}h ${remainingMinutes}m ${remainingSeconds}s`;
+  }
+  
+  startTimerBtn.addEventListener('click', () => {
+
+    TimerBox.classList.add('hidden');
+        
+
+      const days = parseInt(daysInput.value) || 0;
+      const hours = parseInt(hoursInput.value) || 0;
+      const minutes = parseInt(minutesInput.value) || 0;
+  
+      const currentTime = new Date().getTime();
+      expiryTimestamp = currentTime + (days * 24 * 60 * 60 * 1000) + (hours * 60 * 60 * 1000) + (minutes * 60 * 1000);
+  
+      if (intervalId) {
+          clearInterval(intervalId);
+      }
+  
+      intervalId = setInterval(() => {
+          updateTimerDisplay();
+      }, 1000);
+  
+      timerDisplay.classList.remove('hidden');
+
+      showDialog.disabled = false; // Enable showDialog button when timer starts
+  
+  });
+
+    
+ //////////////////////////////////open bid dialog/////////////////////////// 
+ const showDialog = document.getElementById('BidButton');
+  
+  showDialog.addEventListener('click', () => {
+      console.log('is it working?');
+      let showdialog = document.getElementById('dialog');
+      showdialog.classList.remove("hidden");
+      showdialog.classList.add("flex");
+  });
+  
+  // Check for stored expiryTimestamp on page load
+  window.addEventListener('load', () => {
+      expiryTimestamp = localStorage.getItem('expiryTimestamp');
+  
+      if (expiryTimestamp) {
+          updateTimerDisplay();
+          intervalId = setInterval(() => {
+              updateTimerDisplay();
+          }, 1000);
+      }
+  });
+  
+  
+  // Save expiryTimestamp to localStorage when setting timer
+  startTimerBtn.addEventListener('click', () => {
+      localStorage.setItem('expiryTimestamp', expiryTimestamp.toString());
+  });
+  
+
+
+ ///////////////////////////////close bid dialog///////////////////////////////
+ const closeDialog = document.getElementById('closeBid');
+ 
+ closeDialog.addEventListener('click',() => {
+ 
+     let closedialog = document.getElementById('dialog');
+     closedialog.classList.add('hidden');
+ 
+ })
+ 
+
+
+
+    
 ///Extract item Id from URL query parameters/////////////////////////////////////
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -149,30 +298,6 @@ function deleteItem(itemId){
 
 
 
-///////////////////////////////  alert message //////////////////////////////////////////////////////////
-const messageBox = document.getElementById("messageBox");
-const messageText = document.getElementById("messageText");
-const alertText = document.getElementById("alertmessageText");
-const messageContent = document.getElementById("messageContent");
-
-
-function displayMessageBox(message,colorClass,removeExisting = false){
-    alertText.classList.remove('hidden');
-    messageBox.classList.add('flex');
-    messageText.textContent = message;
-
-    if(removeExisting){
-
-        messageContent.className = `p-4 mb-4 text-sm rounded-lg ${colorClass}`;    }
-
-    messageBox.style.display = "block";
-
-    setTimeout(function() {
-        messageBox.style.display = "none";
-    }, 2000); 
-}
-
-
 /////////////////////////////////////////// Add to Cart //////////////////////////////////////////////////////////
 
 const CartButton = document.getElementById("CartButton");
@@ -281,31 +406,19 @@ submitBid.addEventListener("click",function() {
 
 
 
-});
-
-
-//////////////////////////////////open bid dialog/////////////////////////// 
-function showDialog(){
-
-    console.log('is it working?');
-    let showdialog = document.getElementById('dialog');
-    showdialog.classList.remove("hidden");
-    showdialog.classList.add("flex");
-    
-};
-
-///////////////////////////////close bid dialog///////////////////////////////
-function closeDialog(){
-    let closedialog = document.getElementById('dialog');
-    closedialog.classList.add('hidden');
-    
-}
-
-////////////////////////////////close after submit////////////////////////////
-function closeSubmit(){
+ ////////////////////////////////close after submit////////////////////////////
+ function closeSubmit(){
     let closesubmit = document.getElementById('dialog');
     closesubmit.classList.add('hidden');
 }
+
+});
+
+
+
+
+ 
+
 
 
 
