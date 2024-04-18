@@ -25,6 +25,46 @@ backendapp.use(bodyParser.urlencoded({ extended: true }));
 backendapp.use(bodyParser.json());
 backendapp.use(cors());
 
+// timer schema
+const timerSchema = new mongoose.Schema({
+
+  itemId: String,
+  expiryTimestamp: Number,
+});
+
+const Timer = mongoose.model('Timer', timerSchema);
+
+// api for creating a timer 
+
+backendapp.post('/create-timer', async (req,res) => {
+  const { itemId , expiryTimestamp } = req.body;
+
+  try {
+    const timer = new Timer({ itemId, expiryTimestamp});
+    await timer.save();
+    res.status(201).send(timer);
+  } catch(err){
+    res.status(500).send(err);
+  }
+});
+
+// get all timers
+backendapp.get('/get-timer', async(req,res) => {
+  const { itemId } = req.query;
+
+  try {
+    const timer = await Timer.findOne({ itemId: itemId});
+    if (timer){
+      res.send({ expiryTimestamp: timer.expiryTimestamp});
+    } else {
+      res.status(404).send({mesasge: 'Timer not found'});
+    }
+  } catch (err) {
+    res.status(500).send({message: 'Error fetching timer', error: err});
+  }
+});
+
+
 // defining cart schema 
 const cartSchema = new mongoose.Schema({
   userEmail: String,

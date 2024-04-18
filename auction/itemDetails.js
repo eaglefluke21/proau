@@ -1,5 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+     ///Extract item Id from URL query parameters/////////////////////////////////////
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const itemId = urlParams.get('itemId');
+console.log('item id:', itemId);
+
+
+let backendBaseUrl = '';
+
+    updateTimerDisplay();
+  
     const token = localStorage.getItem('token');
 
     const tokenParts = token.split('.');
@@ -38,6 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   })
 
+
+ 
+
   
 ///////////////////////////////  alert message //////////////////////////////////////////////////////////
 const messageBox = document.getElementById("messageBox");
@@ -75,9 +89,25 @@ function displayMessageBox(message,colorClass,removeExisting = false){
   let expiryTimestamp;
   
   // Function to update the timer display
-  function updateTimerDisplay() {
+  async function updateTimerDisplay() {
+
+        try {
+
+             const response = await fetch(`/get-timer?itemId=${itemId}`);
+
+            if(response.ok){
+                const data = await response.json();
+                console.log('Response Data:', data);
+
+                const { expiryTimestamp } = data;
+                console.log('Expiry Timestamp:', expiryTimestamp);
+        
+
       const now = new Date().getTime();
+      console.log('Current Time:', now);
+
       const distance = expiryTimestamp - now;
+      console.log('distance:', distance);
   
       if (distance <= 0) {
         TimerBox.classList.remove('hidden');
@@ -104,9 +134,15 @@ function displayMessageBox(message,colorClass,removeExisting = false){
       const remainingSeconds = Math.floor((distance % (60 * 1000)) / 1000);
   
       timerDisplay.textContent = `${remainingDays}d ${remainingHours}h ${remainingMinutes}m ${remainingSeconds}s`;
+    } else {
+        console.error('Failed to fetch timer:', response.statusText);
+    }
+} catch (error){
+    console.error ('Error fetching timer:',error);
+}
   }
   
-  startTimerBtn.addEventListener('click', () => {
+  startTimerBtn.addEventListener('click', async() => {
 
     TimerBox.classList.add('hidden');
         
@@ -117,6 +153,23 @@ function displayMessageBox(message,colorClass,removeExisting = false){
   
       const currentTime = new Date().getTime();
       expiryTimestamp = currentTime + (days * 24 * 60 * 60 * 1000) + (hours * 60 * 60 * 1000) + (minutes * 60 * 1000);
+
+      const timerData = {
+        itemId: itemId, // Replace with your item ID or generate dynamically
+        expiryTimestamp: expiryTimestamp
+      };
+    
+      try {
+        // Send POST request to create timer
+        const response = await fetch('/create-timer', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(timerData),
+        });
+    
+        if(response.ok){
   
       if (intervalId) {
           clearInterval(intervalId);
@@ -129,7 +182,12 @@ function displayMessageBox(message,colorClass,removeExisting = false){
       timerDisplay.classList.remove('hidden');
 
       showDialog.disabled = false; // Enable showDialog button when timer starts
-
+    } else {
+        console.error('Failed to create timer:',response.statusText);
+    }
+} catch(error){
+    console.error('Error creating timer:', error);
+}
       
   
   });
@@ -181,14 +239,7 @@ function displayMessageBox(message,colorClass,removeExisting = false){
 
 
     
-///Extract item Id from URL query parameters/////////////////////////////////////
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const itemId = urlParams.get('itemId');
-console.log('item id:', itemId);
 
-
-let backendBaseUrl = '';
 
 
 
