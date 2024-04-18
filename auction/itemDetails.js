@@ -93,6 +93,9 @@ function displayMessageBox(message,colorClass,removeExisting = false){
 
       if(distance > 0) {
         BuyButton.disabled = true;
+        
+        TimerBox.classList.add('hidden');
+
       }
   
       const remainingDays = Math.floor(distance / (24 * 60 * 60 * 1000));
@@ -131,7 +134,7 @@ function displayMessageBox(message,colorClass,removeExisting = false){
   
   });
 
-  TimerBox.classList.add('hidden');
+  
   
 
  //////////////////////////////////open bid dialog/////////////////////////// 
