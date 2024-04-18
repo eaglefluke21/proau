@@ -11,7 +11,7 @@ let backendBaseUrl = '';
 
     updateTimerDisplay();
 
-    fetchitemDetails ();
+   
     
   
     const token = localStorage.getItem('token');
@@ -209,6 +209,24 @@ function displayMessageBox(message,colorClass,removeExisting = false){
   });
   
 
+    // Check for stored expiryTimestamp on page load
+    window.addEventListener('load', () => {
+        expiryTimestamp = localStorage.getItem('expiryTimestamp');
+  
+        if (expiryTimestamp) {
+            updateTimerDisplay();
+            intervalId = setInterval(() => {
+                updateTimerDisplay();
+            }, 1000);
+        }
+    });
+  
+  
+    // Save expiryTimestamp to localStorage when setting timer
+    startTimerBtn.addEventListener('click', () => {
+        localStorage.setItem('expiryTimestamp', expiryTimestamp.toString());
+    });
+
   
 
 
@@ -316,6 +334,8 @@ await fetch(`${backendBaseUrl}/bidDetails?itemId=${itemId}`)
 .catch(error => console.error('Error fetching item details:', error ));
 
 }
+
+fetchitemDetails ();
 
 
 
