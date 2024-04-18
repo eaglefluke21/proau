@@ -10,6 +10,9 @@ console.log('item id:', itemId);
 let backendBaseUrl = '';
 
     updateTimerDisplay();
+
+    fetchitemDetails ();
+    
   
     const token = localStorage.getItem('token');
 
@@ -205,23 +208,7 @@ function displayMessageBox(message,colorClass,removeExisting = false){
       showdialog.classList.add("flex");
   });
   
-  // Check for stored expiryTimestamp on page load
-  window.addEventListener('load', () => {
-      expiryTimestamp = localStorage.getItem('expiryTimestamp');
-  
-      if (expiryTimestamp) {
-          updateTimerDisplay();
-          intervalId = setInterval(() => {
-              updateTimerDisplay();
-          }, 1000);
-      }
-  });
-  
-  
-  // Save expiryTimestamp to localStorage when setting timer
-  startTimerBtn.addEventListener('click', () => {
-      localStorage.setItem('expiryTimestamp', expiryTimestamp.toString());
-  });
+
   
 
 
@@ -277,7 +264,9 @@ fetch(`${backendBaseUrl}/admin/getItemDetails?itemId=${itemId}`)
 let highestBidAmount = null;
 let highestBidEmail = null;
 
-fetch(`${backendBaseUrl}/bidDetails?itemId=${itemId}`)
+async function fetchitemDetails () {
+
+await fetch(`${backendBaseUrl}/bidDetails?itemId=${itemId}`)
 .then(response => {
     if(!response.ok){
         throw new Error('Network response was not ok');
@@ -326,7 +315,7 @@ fetch(`${backendBaseUrl}/bidDetails?itemId=${itemId}`)
 })
 .catch(error => console.error('Error fetching item details:', error ));
 
-
+}
 
 
 
