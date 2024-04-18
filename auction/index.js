@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (token) {
       
     console.log('Token exists:', token);
-    displayMessageBox("Welcome to Auction Nest.", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
+    displayMessageBox("Welcome to Auction Nest.", "bg-green-50 text-green-800 ",true);
 
 } else {
     

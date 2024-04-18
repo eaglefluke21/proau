@@ -181,7 +181,7 @@ function deleteItem(userEmail,itemId){
     if (response.ok) {
       console.log('Item removed from cart successfully');
       // Optionally, remove the deleted item from the UI
-      displayMessageBox("Removed from cart successfully.", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
+      displayMessageBox("Removed from cart successfully.", "bg-green-50 text-green-800 ",true);
 
     } else {
       console.error('Failed to remove from cart');

@@ -146,7 +146,7 @@ function displayMessageBox(message,colorClass,removeExisting = false){
       if (response.ok) {
         console.log('Item deleted successfully');
         // Optionally, remove the deleted item from the UI
-        displayMessageBox("Address Deleted successfully.", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
+        displayMessageBox("Address Deleted successfully.", "bg-green-50 text-green-800 ",true);
 
       } else {
         console.error('Failed to delete item');

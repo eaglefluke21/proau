@@ -104,7 +104,7 @@ function additem() {
     })
     .then(data => {
         console.log('Item added successfully:', data);
-        displayMessageBox("Item added Successfuly", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
+        displayMessageBox("Item added Successfuly", "bg-green-50 text-green-800",true);
 
         
     })

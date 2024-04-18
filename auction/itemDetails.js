@@ -342,7 +342,7 @@ function deleteItem(itemId){
         console.log(data.message); 
 
 
-        displayMessageBox("Item removed successfully.", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
+        displayMessageBox("Item removed successfully.", "bg-green-50 text-green-800 ",true);
 
     })
     .catch(error => console.error('Error deleting item:', error));
@@ -372,7 +372,7 @@ CartButton.addEventListener("click", function(){
     })
     .then(data => {
         console.log('Cart Added successfully',data);
-        displayMessageBox("Added to cart  successfully.", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
+        displayMessageBox("Added to cart  successfully.", "bg-green-50 text-green-800 ",true);
 
     })
     .catch(error =>{
@@ -447,7 +447,7 @@ submitBid.addEventListener("click",function() {
         console.log('Bid submitted successfully',data);
         
         closeSubmit();
-        displayMessageBox("Bid Submitted successfully.", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
+        displayMessageBox("Bid Submitted successfully.", "bg-green-50 text-green-800 ",true);
 
     })
     .catch(error => {

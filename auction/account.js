@@ -98,7 +98,7 @@ function signup() {
     })
     .then(data => {
         console.log(data);
-        displayMessageBox("Sign Up Successful", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
+        displayMessageBox("Sign Up Successful", "bg-green-50 text-green-800 ",true);
 
 
     })
