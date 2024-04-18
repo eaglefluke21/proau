@@ -84,9 +84,15 @@ function displayMessageBox(message,colorClass,removeExisting = false){
 
           clearInterval(intervalId);
           timerDisplay.textContent = 'Timer Expired!';
-          
           showDialog.disabled = true; // Disable showDialog button when timer expires
+
+          BuyButton.disabled = false;
+
           return;
+      }
+
+      if(distance > 0) {
+        BuyButton.disabled = true;
       }
   
       const remainingDays = Math.floor(distance / (24 * 60 * 60 * 1000));
@@ -120,10 +126,14 @@ function displayMessageBox(message,colorClass,removeExisting = false){
       timerDisplay.classList.remove('hidden');
 
       showDialog.disabled = false; // Enable showDialog button when timer starts
+
+      
   
   });
 
-    
+  TimerBox.classList.add('hidden');
+  
+
  //////////////////////////////////open bid dialog/////////////////////////// 
  const showDialog = document.getElementById('BidButton');
   
