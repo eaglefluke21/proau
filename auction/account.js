@@ -134,7 +134,7 @@ function signin() {
         // Store the token in local storage
         localStorage.setItem('token', data.token);
         // Redirect to index.html upon successful authentication
-        displayMessageBox("Sign in Successful", "bg-green-50 text-green-800 dark:bg-gray-800 dark:text-green-400",true);
+        displayMessageBox("Sign in Successful", "bg-green-50 text-green-800 ",true);
 
         window.location.href = 'index.html'; 
     })
