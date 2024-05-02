@@ -277,7 +277,7 @@
             <!---Heading Payment-->
         <div class="flex flex-row items-center justify-between   rounded-lg p-2 w-80 border-b-2 border-gray-400 md:w-[45rem]">
 
-            <div><p class=" font-anta text-black text-xl ">Payment Method</p> </div>
+            <div><p class=" font-anta text-black text-xl ">Payment </p> </div>
 
           <div>  <img id="editpayment" src="/svg/paymentmethod.svg" class="h-12 w-8 ml-12" alt="" />  </div> 
         </div>
@@ -301,80 +301,15 @@
               </label>
             </div>
     
-            <!--cardnum-->
-  
-            <div>
-              <label for="cardnum">
-                
-                <p class=" font-comic text-black text-md  "> Card Number </p>
-                <input
-                  class="w-80 p-2  font-anta text-xs shadow-lg border-solid border-2 border-gray-400 active:border-black rounded-lg md:text-lg"
-                  id="cardnum"
-                  type="text"
-                  placeholder=""
-                />
-              </label>
-            </div>
-
-
-             <!---Expiration date , year-->
-         <div class="flex flex-row gap-x-6">
-
-          <!--Expiration date-->
-         <div>
-          <label for="expDate">
             
-            <p class=" font-comic text-black text-md  "> Expiration date </p>
-            <input
-              class="w-36 p-2  font-anta text-xs shadow-lg border-solid border-2 border-gray-400 active:border-black rounded-lg md:text-lg"
-              id="expDate"
-              type="text"
-              placeholder=""
-            />
-          </label>
-        </div>
-
-        <!--Expiration year-->
-        <div>
-          <label for="expYear">
-            
-            <p class=" font-comic text-black text-md  "> Year </p>
-            <input
-              class="w-36 p-2  font-anta text-xs shadow-lg border-solid border-2 border-gray-400 active:border-black rounded-lg md:text-lg"
-              id="expYear"
-              type="text"
-              placeholder=""
-            />
-          </label>
-        </div>
-
-
-      </div>
-
-
-
-
-            <!---securityCode-->
-            <div>
-              <label for="securityCode">
-                
-                <p class=" font-comic text-black text-md  "> Security Code</p>
-                <input
-                  class="w-80 p-2  font-anta text-xs shadow-lg border-solid border-2 border-gray-400 active:border-black rounded-lg md:text-lg"
-                  id="securityCode"
-                  type="text"
-                  placeholder=""
-                />
-              </label>
-            </div>
-
-            
-
-
-                
-        
+  <!--cardnum-->
+<div id="cardnum"  class="w-80 p-2  font-anta text-xs  border-solid border-2 border-gray-400 active:border-black rounded-lg md:text-lg" >
+</div>
+ 
     
-            <button type="button" id="addPaymentBtn" class="bg-gray-300 font-anta rounded-lg  w-64 py-2  hover:bg-gray-500 hover:text-white md:w-80"> Add </button>
+<button id="paybutton" class="bg-teal-300 font-anta rounded-lg  w-64 py-2 mt-8 hover:bg-teal-500 hover:text-white md:w-80">  
+  Proceed
+ </button>
     
     
           </form>
@@ -449,11 +384,8 @@
 
     
    <div >
-    <button id="buybutton" class="bg-teal-300 font-anta rounded-lg  w-64 py-2 mt-8 hover:bg-teal-500 hover:text-white md:w-80">
-        
-      
-       Proceed
-      </button>
+    
+  <!---removed it from here added under payment section-->
   </div>
 
 
@@ -477,6 +409,8 @@
   
     
   </body>
+
+  <script src="https://js.stripe.com/v3/"></script>
 
   <script   src="/checkout.js">  </script>
 </html>

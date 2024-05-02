@@ -113,7 +113,7 @@ function displayMessageBox(message,colorClass,removeExisting = false){
       console.log('distance:', distance);
   
       if (distance <= 0) {
-        TimerBox.classList.remove('hidden');
+        TimerBox.classList.add('hidden');
 
           clearInterval(intervalId);
           timerDisplay.textContent = 'Timer Expired!';
@@ -199,6 +199,8 @@ function displayMessageBox(message,colorClass,removeExisting = false){
   
 
  //////////////////////////////////open bid dialog/////////////////////////// 
+
+
  const showDialog = document.getElementById('BidButton');
   
   showDialog.addEventListener('click', () => {
@@ -208,6 +210,7 @@ function displayMessageBox(message,colorClass,removeExisting = false){
       showdialog.classList.add("flex");
   });
   
+  showDialog.disabled = true;
 
     // Check for stored expiryTimestamp on page load
     window.addEventListener('load', () => {
@@ -422,7 +425,7 @@ BuyButton.addEventListener("click",function(){
 
     if (userEmail === highestBidEmail) {
 
-        window.location.href = `checkout.html?itemId=${itemId}&email=${highestBidEmail}`;
+        window.location.href = `checkout.html?itemId=${itemId}&email=${highestBidEmail}&amount=${highestBidAmount}`;
 } else {
    
     displayMessageBox("Only the highest bidder can proceed to checkout.");

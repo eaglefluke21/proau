@@ -1,0 +1,2 @@
+export const STRIPE_SECRET_KEY = 'sk_test_51OURt4SIANzm4t2k2eV5accl2S7NfkreV5WvNcDKIf0vDt8wLBj0XAocom2fZOUJAukbW59pNkOIxHlJI0ntQy5f00Mkx3wVR4';
+export const STRIPE_PUBLIC_KEY = 'pk_test_51OURt4SIANzm4t2kI3Uij8JRDaNvgqTQuuhOY1QbNhKvHnwRsuD9f6s6xFKCnIqcR2FXeQ0t8m8cVdMLmpsYrHxw00WenAPqtW';

@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
 
     const token = localStorage.getItem('token');
@@ -47,7 +48,9 @@ let prodname;
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const itemId = urlParams.get('itemId');
+const amount = urlParams.get('amount');
 console.log('item id:', itemId);
+console.log('amount:', amount);
 
 
 
@@ -146,7 +149,7 @@ function displayMessageBox(message,colorClass,removeExisting = false){
     });
 
     if (isValid) {
-        displayMessageBox("Item added Successfuly", "bg-green-50 text-green-800 ",true);
+        displayMessageBox("Delivery address added Successfuly", "bg-green-50 text-green-800 ",true);
 
     } else {
         console.error('One or more fields are empty');
@@ -155,6 +158,49 @@ function displayMessageBox(message,colorClass,removeExisting = false){
     
 }
 
+//////////////////////////////////////////////////////////////// stripe /////////////////////////////////////////////////////////
+
+
+const STRIPE_PUBLIC_KEY = 'pk_test_51OURt4SIANzm4t2kI3Uij8JRDaNvgqTQuuhOY1QbNhKvHnwRsuD9f6s6xFKCnIqcR2FXeQ0t8m8cVdMLmpsYrHxw00WenAPqtW';
+
+
+// Initialize Stripe with public key
+const stripe = window.Stripe(STRIPE_PUBLIC_KEY);
+const elements = stripe.elements();
+
+const cardElement = elements.create('card');
+
+cardElement.mount('#cardnum');
+
+
+const AddPayButton = document.getElementById('addPaymentBtn');
+
+AddPayButton.addEventListener('click', async () => {
+  // Get input values
+  const amountInCents = parseInt(document.getElementById('amount').value) * 100;
+  const currency = 'usd';
+
+  // Create Payment Method
+  const { paymentMethod, error } = await stripe.createPaymentMethod({
+    type: 'card',
+    card: cardElement,
+  });
+
+  if (error) {
+    console.error('Error:', error.message);
+    return;
+  }
+
+  // Create URL with query parameters
+  const url = `../stripeService.js?amount=${amountInCents}&currency=${currency}&paymentMethodId=${paymentMethod.id}`;
+
+  // Redirect to stripeService.js with query parameters
+  window.location.href = url;
+});
+
+
+
+/////////////////////////////// stripe  ends //////////////////////////////////////////////////////////////////
 
 
 });

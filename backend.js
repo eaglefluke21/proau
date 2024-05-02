@@ -2,8 +2,8 @@ import express from 'express';
 import mongoose, { Schema } from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { Item } from './dashbackend.js';
 import jwt from 'jsonwebtoken';
+
 
 const backendapp = express();
 const USER = process.env.MONGO_USER;
@@ -24,6 +24,7 @@ mongoose.connect(
 backendapp.use(bodyParser.urlencoded({ extended: true }));
 backendapp.use(bodyParser.json());
 backendapp.use(cors());
+
 
 // timer schema
 const timerSchema = new mongoose.Schema({
