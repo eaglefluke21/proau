@@ -126,7 +126,7 @@ function displayMessageBox(message,colorClass,removeExisting = false){
 
       if(distance > 0) {
         BuyButton.disabled = true;
-        
+        showDialog.disabled = false; 
         TimerBox.classList.add('hidden');
 
       }
@@ -184,7 +184,7 @@ function displayMessageBox(message,colorClass,removeExisting = false){
   
       timerDisplay.classList.remove('hidden');
 
-      showDialog.disabled = false; // Enable showDialog button when timer starts
+      // Enable showDialog button when timer starts
     } else {
         console.error('Failed to create timer:',response.statusText);
     }
