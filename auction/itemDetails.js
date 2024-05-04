@@ -117,7 +117,7 @@ function displayMessageBox(message,colorClass,removeExisting = false){
 
           clearInterval(intervalId);
           timerDisplay.textContent = 'Timer Expired!';
-          showDialog.disabled = true; // Disable showDialog button when timer expires
+          
 
           BuyButton.disabled = false;
 
@@ -126,8 +126,9 @@ function displayMessageBox(message,colorClass,removeExisting = false){
 
       if(distance > 0) {
         BuyButton.disabled = true;
-        showDialog.disabled = false; 
+       showDialog.disabled = false;
         TimerBox.classList.add('hidden');
+        
 
       }
   
@@ -183,8 +184,8 @@ function displayMessageBox(message,colorClass,removeExisting = false){
       }, 1000);
   
       timerDisplay.classList.remove('hidden');
-
-      // Enable showDialog button when timer starts
+      
+       // Enable showDialog button when timer starts
     } else {
         console.error('Failed to create timer:',response.statusText);
     }
@@ -194,6 +195,8 @@ function displayMessageBox(message,colorClass,removeExisting = false){
       
   
   });
+
+
 
   
   
