@@ -84,6 +84,28 @@ const AddAddressBtn = document.getElementById('addAddressBtn');
 
 AddAddressBtn.addEventListener('click', addAddress);
 
+    ///////////////////////////////  alert message //////////////////////////////////////////////////////////
+    const messageBox = document.getElementById("messageBox");
+    const messageText = document.getElementById("messageText");
+    const alertText = document.getElementById("alertmessageText");
+    const messageContent = document.getElementById("messageContent");
+    
+    
+    function displayMessageBox(message,colorClass,removeExisting = false){
+        alertText.classList.remove('hidden');
+        messageBox.classList.add('flex');
+        messageText.textContent = message;
+    
+        if(removeExisting){
+    
+            messageContent.className = `p-4 mb-4 text-sm rounded-lg ${colorClass}`;    }
+    
+        messageBox.style.display = "block";
+    
+        setTimeout(function() {
+            messageBox.style.display = "none";
+        }, 2000); 
+    }
 
 
  
@@ -97,31 +119,7 @@ function addAddress() {
     const state = document.getElementById('State').value;
     const productname = prodname;
 
-    
 
-    ///////////////////////////////  alert message //////////////////////////////////////////////////////////
-const messageBox = document.getElementById("messageBox");
-const messageText = document.getElementById("messageText");
-const alertText = document.getElementById("alertmessageText");
-const messageContent = document.getElementById("messageContent");
-
-
-function displayMessageBox(message,colorClass,removeExisting = false){
-    alertText.classList.remove('hidden');
-    messageBox.classList.add('flex');
-    messageText.textContent = message;
-
-    if(removeExisting){
-
-        messageContent.className = `p-4 mb-4 text-sm rounded-lg ${colorClass}`;    }
-
-    messageBox.style.display = "block";
-
-    setTimeout(function() {
-        messageBox.style.display = "none";
-    }, 2000); 
-}
-    
 
     const isValid = name && mobileno && pincode && flat && area && town && state && productname;
 
@@ -158,6 +156,8 @@ function displayMessageBox(message,colorClass,removeExisting = false){
     
 }
 
+
+
 //////////////////////////////////////////////////////////////// stripe /////////////////////////////////////////////////////////
 
 
@@ -173,12 +173,30 @@ const cardElement = elements.create('card');
 cardElement.mount('#cardnum');
 
 
-const AddPayButton = document.getElementById('addPaymentBtn');
+
+
+const AddPayButton = document.getElementById('paybutton');
+
+    
 
 AddPayButton.addEventListener('click', async () => {
+
   // Get input values
-  const amountInCents = parseInt(document.getElementById('amount').value) * 100;
+  const paymentcardName = document.getElementById('paymentcardName').value;
+    
+  const amountInCents = amount*100;
   const currency = 'usd';
+
+  
+
+if (!paymentcardName || !cardElement){
+
+    displayMessageBox("please enter your Name and Card Details");
+    console.log('please enter your Name and Card Details');
+
+    return; 
+}
+
 
   // Create Payment Method
   const { paymentMethod, error } = await stripe.createPaymentMethod({
@@ -191,11 +209,31 @@ AddPayButton.addEventListener('click', async () => {
     return;
   }
 
-  // Create URL with query parameters
-  const url = `../stripeService.js?amount=${amountInCents}&currency=${currency}&paymentMethodId=${paymentMethod.id}`;
+  const data = {
+    amount: amountInCents,
+    currency: currency,
+    paymentMethodId: paymentMethod.id
+  };
 
-  // Redirect to stripeService.js with query parameters
-  window.location.href = url;
+
+  fetch(`${backendBaseUrl}/stripeService`, {
+    method: 'POST', 
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => console.error('Error fetching item details:', error ));
+
 });
 
 
@@ -203,7 +241,10 @@ AddPayButton.addEventListener('click', async () => {
 /////////////////////////////// stripe  ends //////////////////////////////////////////////////////////////////
 
 
+
+
 });
+
 
 
 

@@ -5,6 +5,8 @@ import backendroute from './backend.js';
 
 import dashbackendroute from './dashbackend.js';
 
+import stripeServiceroute from './stripeService.js';
+
 import cors from 'cors';
 
 import { dirname } from 'path';
@@ -12,6 +14,7 @@ import { dirname } from 'path';
 import path from 'path';
 
 import { fileURLToPath } from 'url';
+
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -43,6 +46,8 @@ app.use('', backendroute);
 
 // dashbackend.js
 app.use('', dashbackendroute);
+
+app.use('', stripeServiceroute);
 
 
 

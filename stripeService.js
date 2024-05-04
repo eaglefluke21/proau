@@ -1,7 +1,48 @@
 import Stripe from 'stripe';
-import { STRIPE_SECRET_KEY } from './stripeConfig';
+
+import express from 'express';
+
+export const STRIPE_SECRET_KEY = 'sk_test_51OURt4SIANzm4t2k2eV5accl2S7NfkreV5WvNcDKIf0vDt8wLBj0XAocom2fZOUJAukbW59pNkOIxHlJI0ntQy5f00Mkx3wVR4';
+export const STRIPE_PUBLIC_KEY = 'pk_test_51OURt4SIANzm4t2kI3Uij8JRDaNvgqTQuuhOY1QbNhKvHnwRsuD9f6s6xFKCnIqcR2FXeQ0t8m8cVdMLmpsYrHxw00WenAPqtW';
+
+
+const stripeServiceapp = express();
+
+stripeServiceapp.use(express.json());
+
 
 const stripe = new Stripe(STRIPE_SECRET_KEY);
+
+
+stripeServiceapp.post('/stripeService', async (req, res) => {
+  
+  if (!req.body.hasOwnProperty('amount') || !req.body.hasOwnProperty('currency') || !req.body.hasOwnProperty('paymentMethodId')) {
+    return res.status(400).send('Missing parameters in request body');
+  }
+
+
+  const amount = req.body.amount;
+  const currency = req.body.currency;
+  const paymentMethodId = req.body.paymentMethodId;
+
+  try {
+    
+    const paymentIntent = await createPaymentIntent(amount, currency, paymentMethodId);
+    console.log('Payment intent created:', paymentIntent);
+
+    const confirmedPaymentIntent = await confirmPaymentIntent(paymentIntent.id);
+    console.log('Payment intent confirmed:', confirmedPaymentIntent);
+
+  
+    console.log('Payment successful!');
+    res.json({ message: 'Payment successful' });
+  } catch (error) {
+    console.error('Error:', error.message);
+
+    console.log('Payment failed. Please try again.');
+    res.status(500).json({ error: 'Payment failed', message: error.message });
+  }
+});
 
 
 export const createPaymentIntent = async (amount, currency, paymentMethodId) => {
@@ -10,7 +51,8 @@ export const createPaymentIntent = async (amount, currency, paymentMethodId) => 
       amount,
       currency,
       payment_method: paymentMethodId,
-      confirm: true, // Set to true to confirm the Payment Intent immediately
+      confirm: true,
+      return_url: 'https://proau.vercel.app/', // Set to true to confirm the Payment Intent immediately
     });
     return paymentIntent;
   } catch (error) {
@@ -28,29 +70,13 @@ export const confirmPaymentIntent = async (paymentIntentId) => {
   }
 };
 
-// Parse query parameters
-const urlParams = new URLSearchParams(window.location.search);
-const amount = parseInt(urlParams.get('amount'));
-const currency = urlParams.get('currency');
-const paymentMethodId = urlParams.get('paymentMethodId');
 
-// Create and confirm Payment Intent
-const handlePayment = async () => {
-  try {
-    const paymentIntent = await createPaymentIntent(amount, currency, paymentMethodId);
-    console.log('Payment intent created:', paymentIntent);
 
-    const confirmedPaymentIntent = await confirmPaymentIntent(paymentIntent.id);
-    console.log('Payment intent confirmed:', confirmedPaymentIntent);
 
-    // Handle successful payment (e.g., show success message to user)
-    alert('Payment successful!');
-  } catch (error) {
-    console.error('Error:', error.message);
-    // Handle payment error (e.g., show error message to user)
-    alert('Payment failed. Please try again.');
-  }
-};
 
-// Call handlePayment function
-handlePayment();
+
+
+
+
+
+export default stripeServiceapp;
