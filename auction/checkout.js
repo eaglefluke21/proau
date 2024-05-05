@@ -195,7 +195,15 @@ if (!paymentcardName || !cardElement){
     console.log('please enter your Name and Card Details');
 
     return; 
-}
+} else {
+  let showpayintent = document.getElementById('payIntent');
+  showpayintent.classList.remove("hidden");
+  showpayintent.classList.add("flex");
+
+
+  
+
+};
 
 
   // Create Payment Method
@@ -244,6 +252,14 @@ if (!paymentcardName || !cardElement){
 
 
 });
+
+
+//close Payment Intent create popup
+
+document.getElementById("closeIntent").addEventListener("click",function(){
+  let showpayintent = document.getElementById('payIntent');
+  showpayintent.classList.add("hidden");
+})
 
 
 
