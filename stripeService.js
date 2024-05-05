@@ -52,7 +52,7 @@ export const createPaymentIntent = async (amount, currency, paymentMethodId) => 
       currency,
       payment_method: paymentMethodId,
       confirm: true,
-      return_url: '', // Set to true to confirm the Payment Intent immediately
+      return_url: 'https://demo.stripe.com/success', // Set to true to confirm the Payment Intent immediately
     });
     return paymentIntent;
   } catch (error) {

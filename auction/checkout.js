@@ -189,41 +189,30 @@ AddPayButton.addEventListener('click', async () => {
 
   
 
-if (!paymentcardName || !cardElement){
-
-    displayMessageBox("please enter your Name and Card Details");
-    console.log('please enter your Name and Card Details');
-
+  if (!paymentcardName || !cardElement) {
+    displayMessageBox("Please enter your Name and Card Details");
+    console.log('Please enter your Name and Card Details');
     return; 
 } else {
-  let showpayintent = document.getElementById('payIntent');
-  showpayintent.classList.remove("hidden");
-  showpayintent.classList.add("flex");
+    // Create Payment Method
+    const { paymentMethod, error } = await stripe.createPaymentMethod({
+        type: 'card',
+        card: cardElement,
+    });
+
+    if (error) {
+        displayMessageBox('Error: Wrong Info!');
+        return;
+    } else {
 
 
-  
+      const data = {
+        amount: amountInCents,
+        currency: currency,
+        paymentMethodId: paymentMethod.id
+      };
 
-};
-
-
-  // Create Payment Method
-  const { paymentMethod, error } = await stripe.createPaymentMethod({
-    type: 'card',
-    card: cardElement,
-  });
-
-  if (error) {
-    console.error('Error:', error.message);
-    return;
-  }
-
-  const data = {
-    amount: amountInCents,
-    currency: currency,
-    paymentMethodId: paymentMethod.id
-  };
-
-
+      
   fetch(`${backendBaseUrl}/stripeService`, {
     method: 'POST', 
     headers: {
@@ -241,6 +230,15 @@ if (!paymentcardName || !cardElement){
     console.log(data);
   })
   .catch(error => console.error('Error fetching item details:', error ));
+    
+        // Payment method created successfully, show payment intent popup
+        let showpayintent = document.getElementById('payIntent');
+        showpayintent.classList.remove("hidden");
+        showpayintent.classList.add("flex");
+    }
+}
+
+
 
 });
 
