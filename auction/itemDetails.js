@@ -118,7 +118,7 @@ function displayMessageBox(message,colorClass,removeExisting = false){
           clearInterval(intervalId);
           timerDisplay.textContent = 'Timer Expired!';
           
-
+            deleteButton.disabled = true;
           BuyButton.disabled = false;
 
           return;
@@ -128,6 +128,7 @@ function displayMessageBox(message,colorClass,removeExisting = false){
         BuyButton.disabled = true;
        showDialog.disabled = false;
         TimerBox.classList.add('hidden');
+        deleteButton.disabled = true;
         
 
       }
@@ -253,8 +254,9 @@ function displayMessageBox(message,colorClass,removeExisting = false){
 
 
 
-
-
+ const deleteButton = document.getElementById('deleteButton');
+ 
+ deleteButton.disabled = false;
 ///Fetch item details from backend using item ID///////////////////////////////////////
 
 fetch(`${backendBaseUrl}/admin/getItemDetails?itemId=${itemId}`)
@@ -271,7 +273,7 @@ fetch(`${backendBaseUrl}/admin/getItemDetails?itemId=${itemId}`)
     document.getElementById('itemImageURL').src = data.itemImageURL;
 
     
-    const deleteButton = document.getElementById('deleteButton');
+    
     deleteButton.addEventListener('click', function() {
             deleteItem(itemId);
     });
@@ -347,6 +349,7 @@ fetchitemDetails ();
 
 
 ///////////////////////////////////////////// Delete item ///////////////////////////////
+
 function deleteItem(itemId){
     console.log("checking item id:", itemId );
     console.log("checking image URL:", itemImageURL.src );
